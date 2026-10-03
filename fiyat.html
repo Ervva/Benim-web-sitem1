@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiyat & Kampanyalar | Glow Beauty Studio</title>
+<link rel="icon" href="fotograflar/glowbeutyLogo2.png" type="image/gif">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:'Poppins',sans-serif;
+    background:#fffafa;
+    color:#777;
+}
+
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    background:white;
+    padding:15px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 5px 15px rgba(153, 117, 117, 0.05);
+    z-index:1000;
+}
+nav h2{letter-spacing:2px; color:#b88a8a; font-size: 1.2rem;}
+nav ul{list-style:none;display:flex;gap:20px;}
+nav a{text-decoration:none;color:#b88a8a;font-weight:500;transition:0.3s; font-size: 0.9rem;}
+nav a:hover{color:#e8b4b8;}
+
+.price-header {
+    margin-top: 80px;
+    padding: 40px 20px;
+    text-align: center;
+    background: #ffffff;
+}
+.price-header h1 { font-size: 2.2rem; color: #b88a8a; margin-bottom: 5px; }
+.price-header p { font-style: italic; color: #999; font-size: 0.9rem; }
+
+.menu-container {
+    padding: 20px 8%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Boyutlar küçültüldü */
+    gap: 25px;
+}
+
+.category-box {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+    border: 1px solid #fdf2f2;
+}
+
+.category-box h2 {
+    color: #e8b4b8;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #fdf2f2;
+    padding-bottom: 8px;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
+
+.price-name {
+    font-weight: 500;
+    color: #b88a8a;
+    padding-right: 8px;
+}
+
+.price-dots {
+    flex-grow: 1;
+    border-bottom: 1px dotted #eee;
+}
+
+.price-value {
+    font-weight: 600;
+    color: #888;
+    padding-left: 8px;
+}
+
+.offer-banner {
+    margin: 40px 8%;
+    background: linear-gradient(135deg, #e8b4b8, #f8d3e0);
+    padding: 25px;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+}
+.offer-banner h3 { font-size: 1.5rem; margin-bottom: 5px; }
+.offer-banner p { font-size: 0.9rem; }
+
+.cta-section { text-align: center; padding: 40px 20px; }
+.cta-btn {
+    display: inline-block;
+    padding: 14px 40px;
+    background: #b88a8a;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: 0.3s;
+    font-size: 0.9rem;
+}
+.cta-btn:hover { background: #e8b4b8; }
+
+footer{background:#fff; color:#b88a8a; padding:30px; text-align:center; font-size: 0.8rem; border-top:1px solid #fdf2f2}
+
+@media (max-width: 600px) {
+    .menu-container { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+}
+
+.campaigns {
+    background: #fdf2f2;
+    padding: 80px 10%;
+    text-align: center;
+}
+.campaigns h2 { color: #b88a8a; margin-bottom: 40px; font-size: 2rem; }
+
+.promo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.promo-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 2px dashed #e8b4b8;
+}
+.promo-card .badge {
+    position: absolute;
+    top: 20px; right: -30px;
+    background: #e8b4b8;
+    color: white;
+    padding: 5px 40px;
+    transform: rotate(45deg);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.promo-card h4 { color: #b88a8a; font-size: 1.5rem; margin-bottom: 15px; }
+.promo-card .price { font-size: 2rem; font-weight: bold; color: #444; }
+.promo-card .price span { font-size: 1rem; text-decoration: line-through; color: #bbb; }
+
+footer{padding:40px; text-align:center; color:#b88a8a; font-size:0.8rem;}
+
+</style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo-link">
+        <h2>Glow Beauty Studio</h2>
+    </a>
+    <ul>
+       <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="sac.html">Saç</a></li>
+        <li><a href="kaskirpik.html">Kirpik</a></li>
+        <li><a href="ciltbakimi.html">Cilt</a></li>
+        <li><a href="lazer.html">Lazer</a></li>
+        <li><a href="kalicimakyaj.html">Kalıcı Makyaj</a></li>
+        <li><a href="tirnak.html">Tırnak</a></li>
+        <li><a href="fiyat.html"  style="color: #e8b4b8;">Fiyat & Kampanyalar</a></li>
+        <li><a href="ekip.html">Ekibimiz</a></li>
+        <li><a href="iletisim.html">İletişim</a></li>
+        <li><a href="memnuniyet.html">Memnuniyet</a></li>
+
+    </ul>
+</nav>
+
+<header class="price-header">
+    <h1>Güzellik Menüsü</h1>
+    <p>Işıltınızı tamamlayacak tüm hizmetler bir arada.</p>
+</header>
+
+<div class="menu-container">
+    <div class="category-box">
+        <h2>✨ Saç Tasarımı</h2>
+        <div class="price-item"><span>Kesim & Yıkama</span><div class="price-dots"></div><span>₺600</span></div>
+        <div class="price-item"><span>Ombre / Sombre</span><div class="price-dots"></div><span>₺2.500+</span></div>
+        <div class="price-item"><span>Fön & Maşa </span><div class="price-dots"></div><span>₺350</span></div>
+        <div class="price-item"><span>Keratin Bakım</span><div class="price-dots"></div><span>₺1.200</span></div>
+    </div>
+
+    <div class="category-box">
+        <h2>🌿 Cilt Bakımı</h2>
+        <div class="price-item"><span>Klasik Bakım</span><div class="price-dots"></div><span>₺600</span></div>
+        <div class="price-item"><span>Hydrafacial</span><div class="price-dots"></div><span>₺1.200</span></div>
+        <div class="price-item"><span>Dermapen</span><div class="price-dots"></div><span>₺1.800</span></div>
+        <div class="price-item"><span>Anti-Aging / Lifting</span><div class="price-dots"></div><span>₺1500</span></div>
+    </div>
+
+    <div class="category-box">
+        <h2>👁️ Kaş & Kirpik</h2>
+        <div class="price-item"><span>Kirpik Lifting</span><div class="price-dots"></div><span>₺500</span></div>
+        <div class="price-item"><span>Kaş Laminasyonu</span><div class="price-dots"></div><span>₺550</span></div>
+        <div class="price-item"><span>Kaş Tasarım (Alım)</span><div class="price-dots"></div><span>₺300</span></div>
+        <div class="price-item"><span>İpek Kirpik</span><div class="price-dots"></div><span>₺650-850</span></div>
+    </div>
+
+    <div class="category-box">
+        <h2>💅 Protez Tırnak</h2>
+        <div class="price-item"><span>Protez Tırnak</span><div class="price-dots"></div><span>₺850</span></div>
+        <div class="price-item"><span>Kalıcı Oje</span><div class="price-dots"></div><span>₺440</span></div>
+        <div class="price-item"><span>Nail Art (Adet)</span><div class="price-dots"></div><span>₺50</span></div>
+        <div class="price-item"><span>Medikal Manikür</span><div class="price-dots"></div><span>₺300</span></div>
+    </div>
+
+    <div class="category-box">
+        <h2>⚡ Lazer Epilasyon</h2>
+        <div class="price-item"><span>Tüm Vücut (Tek Seans)</span><div class="price-dots"></div><span>₺1.200</span></div>
+        <div class="price-item"><span>Koltuk Altı</span><div class="price-dots"></div><span>₺250</span></div>
+        <div class="price-item"><span>Genital Bölge</span><div class="price-dots"></div><span>₺400</span></div>
+        <div class="price-item"><span>Yarım Bacak</span><div class="price-dots"></div><span>₺600</span></div>
+    </div>
+
+    <div class="category-box">
+        <h2>🎨 Kalıcı Makyaj</h2>
+        <div class="price-item"><span>Dudak Renklendirme</span><div class="price-dots"></div><span>₺3.500</span></div>
+        <div class="price-item"><span>Dipliner</span><div class="price-dots"></div><span>₺2.200</span></div>
+        <div class="price-item"><span>Medikal Kamuflaj</span><div class="price-dots"></div><span>₺1.500'den başlayan...</span></div>
+        <div class="price-item"><span>Babyliner</span><div class="price-dots"></div><span>₺2.800</span></div>
+    </div>
+</div>
+
+<section class="campaigns">
+    <h2>Ayın Parlayan Fırsatları</h2>
+    <div class="promo-grid">
+        <div class="promo-card">
+            <div class="badge">POPÜLER</div>
+            <h4>Gelin Paketi</h4>
+            <p>Saç Tasarım + Porselen Makyaj + Profesyonel Manikür</p>
+            <div class="price"><span>₺4.500</span> ₺3.750</div>
+        </div>
+        <div class="promo-card">
+            <div class="badge">%20 İNDİRİM</div>
+            <h4>Işıltı Paketi</h4>
+            <p>Hydrafacial Cilt Bakımı + Kirpik Lifting</p>
+            <div class="price"><span>₺1.700</span> ₺1.350</div>
+        </div>
+    </div>
+    
+</section>
+<div class="offer-banner">
+    <h3>Yaza Hazırlık Paketi ✨</h3>
+    <p>Lazer (Tüm Vücut) + Cilt Bakımı alımlarında <b>₺500 İndirim!</b></p>
+</div>
+
+<div class="cta-section">
+    <a href="iletisim.html" class="cta-btn">Hemen Randevu Al</a>
+</div>
+
+
+
+<footer>© 2026 Glow Beauty Studio | Tüm Hakları Saklıdır</footer>
+
+</body>
+</html>

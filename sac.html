@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saç Tasarım | Glow Beauty Studio</title>
+<link rel="icon" href="fotograflar/glowbeutyLogo2.png" type="image/gif">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+        font-family:'Poppins',sans-serif;
+        background:#fffafa;
+        color:#777;
+        overflow-x: hidden;
+    }
+    
+    nav{
+        position:fixed;
+        width:100%;
+        top:0;
+        background:white;
+        padding:15px 50px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        box-shadow:0 5px 15px rgba(153, 117, 117, 0.05);
+        z-index:1000;
+    }
+    nav h2{letter-spacing:2px; color:#b88a8a; font-size: 1.2rem;}
+    nav ul{list-style:none;display:flex;gap:20px;}
+    nav a{text-decoration:none;color:#b88a8a;font-weight:500;transition:0.3s; font-size: 0.9rem;}
+    nav a:hover{color:#e8b4b8;}
+    
+
+.hero{
+    height:70vh;
+    background:linear-gradient(rgba(232, 180, 184, 0.5),rgba(255, 255, 255, 0.2)),
+    url("fotograflar/tirnakhero.jpg") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    margin-top:80px;
+}
+.hero h1{font-size:55px; animation:fadeUp 1.2s ease;}
+.hero p{margin-top:20px; font-size:20px; animation:fadeUp 1.6s ease;}
+
+
+.services-section { padding: 80px 10%; text-align: center; }
+.services-section h2 { color: #b88a8a; margin-bottom: 50px; font-size: 2.2rem; letter-spacing: 1px; }
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 40px;
+}
+.s-card {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.04);
+    transition: 0.4s;
+    cursor: pointer;
+    border: 1px solid #f2f2f2;
+}
+.s-card:hover { 
+    transform: translateY(-12px); 
+    border-color: #e8b4b8;
+    box-shadow: 0 20px 40px rgba(232, 180, 184, 0.15);
+}
+.s-card img { 
+    width: 100%; 
+    height: 300px; 
+    object-fit: cover; 
+    transition: 0.5s;
+}
+.s-card:hover img {
+    transform: scale(1.05);
+}
+.s-card h3 { color: #b88a8a; margin: 20px 0 5px; font-size: 1.3rem; }
+.s-card p { font-size: 0.9rem; padding: 0 15px 25px; color: #aaa; }
+
+
+.features {
+    background: #fff;
+    padding: 60px 10%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    text-align: center;
+    border-top: 1px solid #f9f0f0;
+}
+.feat-item h4 { color: #b88a8a; margin-bottom: 5px; font-size: 1.1rem; }
+.feat-item p { font-size: 0.9rem; color: #999; }
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(184, 138, 138, 0.6); 
+    backdrop-filter: blur(8px); 
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background: white;
+    padding: 50px;
+    border-radius: 35px;
+    width: 90%;
+    max-width: 550px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    animation: fadeUp 0.4s ease;
+}
+.close-modal { position: absolute; top: 20px; right: 25px; font-size: 30px; cursor: pointer; color: #b88a8a; }
+
+.team-trigger { padding: 40px 10%; text-align: center; }
+.open-btn {
+    padding: 16px 45px;
+    background: #fdf2f2;
+    color: #b88a8a;
+    border: 2px solid #e8b4b8;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+.open-btn:hover { background: #e8b4b8; color: white; transform: scale(1.05); }
+
+.testimonials { padding: 60px 10% 100px; text-align: center; }
+.testimonial-card h3 { font-style: italic; color: #b88a8a; font-weight: 300; line-height: 1.6; }
+
+.faq-section { padding: 80px 10%; background: #fff; }
+.faq-section h2 { text-align: center; color: #b88a8a; margin-bottom: 40px; }
+.faq-container { max-width: 800px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid #fdf2f2; padding: 20px 0; }
+.faq-question { 
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; color: #b88a8a; font-weight: 600; font-size: 1.1rem;
+}
+.faq-answer { 
+    max-height: 0; overflow: hidden; transition: 0.4s ease; 
+    color: #888; font-size: 0.95rem; line-height: 1.6;
+}
+.faq-item.active .faq-answer { max-height: 300px; margin-top: 15px; }
+.faq-question::after { content: "+"; font-size: 22px; transition: 0.3s; }
+.faq-item.active .faq-question::after { content: "−"; transform: rotate(180deg); }
+
+.wp-float {
+    position: fixed; bottom: 30px; right: 30px;
+    background: #25d366; color: white; width: 60px; height: 60px;
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    font-size: 30px; text-decoration: none; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    z-index: 3000; transition: 0.3s;
+}
+.wp-float:hover { transform: scale(1.1); }
+
+.cta { 
+    padding: 100px 20px; 
+    text-align: center; 
+    background: #fdf2f2; 
+}
+.cta a {
+    display: inline-block; 
+    padding: 18px 55px; 
+    background: #e8b4b8; 
+    color: white;
+    text-decoration: none; 
+    border-radius: 50px; 
+    font-weight: bold; 
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(232, 180, 184, 0.2);
+}
+
+@media (max-width: 992px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 650px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 40px; }
+}
+
+@keyframes fadeUp{ from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+</style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo-link">
+            <h2>Glow Beauty Studio</h2>
+        </a>
+        <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="sac.html" style="color: #e8b4b8;">Saç</a></li>
+            <li><a href="kaskirpik.html">Kirpik</a></li>
+            <li><a href="ciltbakimi.html">Cilt</a></li>
+            <li><a href="lazer.html">Lazer</a></li>
+            <li><a href="kalicimakyaj.html">Kalıcı Makyaj</a></li>
+            <li><a href="tirnak.html">Tırnak</a></li>
+            <li><a href="fiyat.html">Fiyat & Kampanyalar</a></li>
+            <li><a href="ekip.html">Ekibimiz</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li><a href="memnuniyet.html">Memnuniyet</a></li>
+    
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div>
+            <h1>Saçınız Sizin Tacınızdır</h1>
+            <p>Uzman ellerde dönüşümü hissedin.</p>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <h2>Saç Tasarım Hizmetlerimiz</h2>
+        <div class="services-grid">
+            <div class="s-card" onclick="openService('ombre')">
+                <img src="fotograflar/ombre.jpg">
+                <h3>Ombre & Balayage</h3>
+                <p>Güneş ışıltısını saçlarınızda hissedin.</p>
+            </div>
+            <div class="s-card" onclick="openService('kesim')">
+                <img src="fotograflar/sackesim.jpg">
+                <h3>Stil Kesim</h3>
+                <p>Size en çok yakışan modern dokunuşlar.</p>
+            </div>
+            <div class="s-card" onclick="openService('botoks')">
+                <img src="fotograflar/sacbakimi.jpg">
+                <h3>Botoks Bakımı</h3>
+                <p>İpeksi ve sağlıklı saçlara geri dönün.</p>
+            </div>
+            <div class="s-card" onclick="openService('gelin')">
+                <img src="fotograflar/gelinsac.jpg">
+                <h3>Gelin Tasarımı</h3>
+                <p>Hayatınızın en özel gününde ışıldayın.</p>
+            </div>
+            <div class="s-card" onclick="openService('kaynak')">
+                <img src="fotograflar/mikrokaynak.jpg">
+                <h3>Mikro Kaynak</h3>
+                <p>Doğal, uzun ve hacimli saçlar.</p>
+            </div>
+            <div class="s-card" onclick="openService('boya')">
+                <img src="fotograflar/organikboya.jpg">
+                <h3>Organik Boya</h3>
+                <p>Sağlıklı içeriklerle kusursuz renkler.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feat-item">
+            <h4>Kişiye Özel Analiz</h4>
+            <p>Saç tipinize uygun özel çözümler.</p>
+        </div>
+        <div class="feat-item">
+            <h4>Premium Konfor</h4>
+            <p>Siz kahvenizi yudumlarken biz dönüşümü başlatalım.</p>
+        </div>
+        <div class="feat-item">
+            <h4>Hijyen Standartları</h4>
+            <p>Her işlemde sterilize edilmiş ekipmanlar.</p>
+        </div>
+    </section>
+
+    <section class="team-trigger">
+        <button class="open-btn" id="openTeam">Uzmanlarımızla Tanışın</button>
+    </section>
+
+    <section class="testimonials">
+        <div class="testimonial-card">
+            <h3>"Saçlarım hiç bu kadar canlı görünmemişti. <br> Glow ekibi gerçekten sihirli ellere sahip!"</h3>
+            <p style="margin-top:25px; color:#b88a8a; font-weight: 600;">Selin Yılmaz</p>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <h2>Sıkça Sorulan Sorular</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">Ombre işlemi saçımı yıpratır mı?</div>
+                <div class="faq-answer">Kullandığımız kaliteli açıcılar ve koruyucu bağ güçlendiriciler sayesinde saç yapısını minimum düzeyde etkileyerek hayalinizdeki tonu yakalıyoruz.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Mikro kaynak ne kadar süre kullanılabilir?</div>
+                <div class="faq-answer">Saç uzama hızınıza bağlı olarak ortalama 3-4 ay kullanım ömrü vardır. Sonrasında bakım yapılarak tekrar yukarı taşınabilir.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Saç botoksu sonrası nelere dikkat etmeliyim?</div>
+                <div class="faq-answer">İşlemin kalıcılığını artırmak için sülfatsız şampuanlar kullanmanızı ve ilk 48 saat saçı yıkamamanızı öneriyoruz.</div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="modal" id="serviceModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeService()">&times;</span>
+            <h2 id="modalTitle" style="color: #b88a8a; margin-bottom: 20px; font-size: 1.8rem;"></h2>
+            <p id="modalDesc" style="line-height: 1.8; color: #777; font-size: 1.1rem;"></p>
+            <br><br>
+            <a href="iletisim.html" class="open-btn" style="text-decoration:none;">Randevu Al & İletişime Geç</a>
+        </div>
+    </div>
+
+    <div class="modal" id="teamModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeTeam">&times;</span>
+            <h2 style="color: #b88a8a; margin-bottom: 30px;">Saç Tasarım Ekibimiz</h2>
+            <div style="display:flex; gap:30px; justify-content:center; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <img src="fotograflar/elifyilmaz.jpg" style="width:130px; height:130px; border-radius:50%; object-fit:cover; border:4px solid #e8b4b8; margin-bottom:10px;">
+                    <h4>Elif Yılmaz</h4>
+                    <small>Master Colorist</small>
+                </div>
+                <div style="text-align: center;">
+                    <img src="fotograflar/aysedemir.jpg" style="width:130px; height:130px; border-radius:50%; object-fit:cover; border:4px solid #e8b4b8; margin-bottom:10px;">
+                    <h4>Ayşe Demir</h4>
+                    <small>Creative Stylist</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="cta">
+        <h2>Yenilenmeye Hazır mısınız? ✨</h2>
+        <a href="iletisim.html">Hemen Randevu Al</a>
+    </section>
+
+    <a href="https://wa.me/905000000000" class="wp-float" target="_blank">💬</a>
+    
+    <script>
+        const serviceData = {
+            ombre: { title: "Ombre & Balayage", desc: "Doğal geçişler ve saçın kendi ışıltısını ön plana çıkaran tekniklerimizle, diplerden uçlara doğru yayılan kusursuz renkler yaratıyoruz." },
+            kesim: { title: "Stil Kesim", desc: "Sadece bir saç kesimi değil, yüz hattınıza ve yaşam tarzınıza en uygun imajı belirliyoruz. Modern ve dinamik kesimlerle kendinizi yenileyin." },
+            botoks: { title: "Saç Botoksu", desc: "Kimyasal işlemlerden yorulmuş saçları keratin ve özel vitaminlerle canlandırıyoruz. 3-4 ay süren parlaklık ve yumuşaklık sağlıyoruz." },
+            gelin: { title: "Gelin Tasarımı", desc: "Gelinliğiniz, makyajınız ve düğün konseptinizle bütünleşen, gece boyunca formunu kaybetmeyen en şık saç tasarımları." },
+            kaynak: { title: "Mikro Kaynak", desc: "Saçlarınızın boyunu ve hacmini uzatırken dışarıdan belli olmayan, konforlu bir kullanım sunan en son teknoloji kaynak yöntemi." },
+            boya: { title: "Organik Boya", desc: "Saç yapısını bozmadan, kafa derisinde hassasiyet yaratmayan, yüksek kalıcılık sunan organik pigmentli profesyonel boyalar." }
+        };
+
+        function openService(key) {
+            document.getElementById('modalTitle').innerText = serviceData[key].title;
+            document.getElementById('modalDesc').innerText = serviceData[key].desc;
+            document.getElementById('serviceModal').style.display = "flex";
+        }
+
+        function closeService() {
+            document.getElementById('serviceModal').style.display = "none";
+        }
+
+        const teamModal = document.getElementById('teamModal');
+        const openTeamBtn = document.getElementById('openTeam');
+        const closeTeamBtn = document.getElementById('closeTeam');
+    
+        openTeamBtn.onclick = () => teamModal.style.display = "flex";
+        closeTeamBtn.onclick = () => teamModal.style.display = "none";
+
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        window.onclick = (e) => { 
+            if(e.target.className == 'modal') {
+                e.target.style.display = "none";
+            }
+        }
+    </script>
+    
+</body>
+</html>

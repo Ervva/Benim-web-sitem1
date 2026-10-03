@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ekibimiz | Glow Beauty Studio</title>
+<link rel="icon" href="fotograflar/glowbeutyLogo2.png" type="image/gif">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Poppins',sans-serif; background:#fffafa; color:#777;}
+
+    nav{position:fixed; width:100%; top:0; background:white; padding:15px 50px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 5px 15px rgba(0,0,0,0.05); z-index:1000;}
+    nav h2{color:#b88a8a; letter-spacing:2px; font-size:1.2rem;}
+    nav ul{list-style:none; display:flex; gap:20px;}
+    nav a{text-decoration:none; color:#b88a8a; font-size:0.9rem; font-weight:500;}
+    nav a:hover{color:#e8b4b8;}
+
+    .team-header { margin-top: 120px; text-align: center; padding: 40px 20px; }
+    .team-header h1 { color: #b88a8a; font-size: 2.8rem; margin-bottom: 10px; }
+    .team-header p { font-style: italic; color: #a5a5a5; }
+
+    .team-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        padding: 40px 10%;
+    }
+
+    .team-card {
+        width: 320px;
+        background: white;
+        padding: 40px 30px;
+        border-radius: 40px;
+        box-shadow: 0 10px 30px rgba(184, 138, 138, 0.1);
+        text-align: center;
+        transition: 0.4s;
+        border: 1px solid #fdf2f2;
+    }
+    .team-card:hover { transform: translateY(-15px); border-color: #e8b4b8; }
+    
+    .team-card img {
+        width: 160px; height: 160px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 25px;
+        border: 6px solid #fdf2f2;
+    }
+
+    .team-card h3 { color: #b88a8a; font-size: 1.4rem; margin-bottom: 5px; }
+    .team-card span { display: block; color: #e8b4b8; font-weight: 600; font-size: 0.9rem; margin-bottom: 15px; }
+    
+    .expert-info {
+        text-align: left;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    .expert-info div { margin-bottom: 10px; font-size: 0.85rem; }
+    .expert-info b { color: #b88a8a; display: block; }
+
+    .stats-section {
+        background: white;
+        padding: 60px 10%;
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        margin: 40px 0;
+    }
+    .stat-box h2 { color: #e8b4b8; font-size: 2.5rem; }
+    .stat-box p { color: #b88a8a; font-weight: 500; }
+
+    .values-section { padding: 80px 10%; text-align: center; }
+    .values-section h2 { color: #b88a8a; margin-bottom: 50px; }
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+    }
+    .value-item { padding: 20px; }
+    .value-item i { font-size: 30px; color: #e8b4b8; display: block; margin-bottom: 15px; }
+    .value-item h4 { color: #b88a8a; margin-bottom: 10px; }
+    .value-item p { font-size: 0.85rem; }
+
+    .team-cta {
+        background: #fdf2f2;
+        padding: 80px 20px;
+        text-align: center;
+    }
+    .team-cta a {
+        display: inline-block;
+        padding: 15px 45px;
+        background: #e8b4b8;
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    footer{padding:40px; text-align:center; color:#b88a8a; font-size:0.8rem; background: white;}
+</style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo-link">
+        <h2>Glow Beauty Studio</h2>
+    </a>
+    <ul>
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="sac.html">Saç</a></li>
+        <li><a href="kaskirpik.html">Kirpik</a></li>
+        <li><a href="ciltbakimi.html">Cilt</a></li>
+        <li><a href="lazer.html">Lazer</a></li>
+        <li><a href="kalicimakyaj.html">Kalıcı Makyaj</a></li>
+        <li><a href="tirnak.html">Tırnak</a></li>
+        <li><a href="fiyat.html">Fiyat & Kampanyalar</a></li>
+        <li><a href="ekip.html" style="color: #e8b4b8;">Ekibimiz</a></li>
+        <li><a href="iletisim.html">İletişim</a></li>
+        <li><a href="memnuniyet.html">Memnuniyet</a></li>
+    </ul>
+</nav>
+
+<div class="team-header">
+    <h1>Işıltınızın Mimarları</h1>
+    <p>Bilgi, tecrübe ve sanatın buluştuğu noktadasınız.</p>
+</div>
+
+<div class="team-container">
+    <div class="team-card">
+        <img src="fotograflar/deniz.jpg" alt="Deniz Akkaya">
+        <h3>Deniz Akkaya</h3>
+        <span>Grand Master Artist</span>
+        <p>Güzelliği matematiksel bir oranla harmanlayan vizyoner sanatçımız.</p>
+        <div class="expert-info">
+            <div><b>🎓 Eğitim:</b> Phibrows Academy, MEB Ustalık Belgesi</div>
+            <div><b>🏆 Uzmanlık:</b> Microblading, Dudak Renklendirme</div>
+        </div>
+    </div>
+
+    <div class="team-card">
+        <img src="fotograflar/merveuzun.jpg" alt="Zeynep Yılmaz">
+        <h3>Merve Uzun</h3>
+        <span>Kıdemli Estetisyen</span>
+        <p>Cilt sağlığı konusunda bilimsel yaklaşımlarla mucizeler yaratan uzmanımız.</p>
+        <div class="expert-info">
+            <div><b>🎓 Eğitim:</b> İstanbul Estetisyenlik Akademisi</div>
+            <div><b>🏆 Uzmanlık:</b> Leke Tedavisi, Akne Protokolü, Anti-Aging</div>
+        </div>
+    </div>
+
+    <div class="team-card">
+        <img src="fotograflar/melis.jpg" alt="Melis Yılmaz">
+        <h3>Melis Ece</h3>
+        <span>Nail Art Master</span>
+        <p>Tırnak tasarımını bir yaşam tarzı haline getiren yaratıcı ruhumuz.</p>
+        <div class="expert-info">
+            <div><b>🎓 Eğitim:</b> Profesyonel Tırnak Akademisi (İtalya)</div>
+            <div><b>🏆 Uzmanlık:</b> Protez Tırnak, Medikal Manikür, Nail Art</div>
+        </div>
+    </div>
+</div>
+
+<section class="stats-section">
+    <div class="stat-box"><h2>10+</h2><p>Yıllık Tecrübe</p></div>
+    <div class="stat-box"><h2>5000+</h2><p>Mutlu Danışan</p></div>
+    <div class="stat-box"><h2>50+</h2><p>Uluslararası Sertifika</p></div>
+</section>
+
+<section class="values-section">
+    <h2>Neden Bizimle Güvendesiniz?</h2>
+    <div class="values-grid">
+        <div class="value-item">
+            <span>✨</span>
+            <h4>Kişiye Özel Analiz</h4>
+            <p>Her cilt ve her tırnak yapısı özeldir. Standart değil, size uygun olanı sunarız.</p>
+        </div>
+        <div class="value-item">
+            <span>🛡️</span>
+            <h4>Üst Düzey Hijyen</h4>
+            <p>Tüm ekipmanlarımız hastane tipi otoklav cihazlarında sterilize edilmektedir.</p>
+        </div>
+        <div class="value-item">
+            <span>🌿</span>
+            <h4>Organik Pigmentler</h4>
+            <p>İşlemlerimizde sadece FDA onaylı, alerji yapmayan ve renk değiştirmeyen ürünler kullanılır.</p>
+        </div>
+    </div>
+</section>
+
+<section class="team-cta">
+    <h2>Hangi işlem için kime danışmak istersiniz?</h2>
+    <p style="margin-bottom: 30px; color: #888;">Uzmanlarımızla ücretsiz ön görüşme planlayabilirsiniz.</p>
+    <a href="iletisim.html">Randevu Hattına Bağlan</a>
+</section>
+
+<footer>© 2026 Glow Beauty Studio | Güzellik Güvendir.</footer>
+
+</body>
+</html>

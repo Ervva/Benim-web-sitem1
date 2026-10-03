@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="fotograflar/glowbeutyLogo2.png" type="image/gif">
+<title>Küçük Bir Soru | Glow Beauty Studio</title>
+<style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+        font-family:'Poppins',sans-serif;
+        background:#fffafa;
+        color:#777;
+    }
+    
+    nav{
+        position:fixed;
+        width:100%;
+        top:0;
+        background:white;
+        padding:15px 50px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        box-shadow:0 5px 15px rgba(153, 117, 117, 0.05);
+        z-index:1000;
+    }
+    nav h2{letter-spacing:2px; color:#b88a8a; font-size: 1.2rem;}
+    nav ul{list-style:none;display:flex;gap:20px;}
+    nav a{text-decoration:none;color:#b88a8a;font-weight:500;transition:0.3s; font-size: 0.9rem;}
+    nav a:hover{color:#e8b4b8;}
+    
+
+.game-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(circle, #fff 0%, #fffafa 100%);
+}
+
+.question-box h1 {
+    font-size: 35px;
+    color: #b88a8a;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    height: 80px; 
+}
+
+/* BUTONLAR */
+.btn {
+    padding: 15px 45px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s; 
+    border: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+}
+
+#yesBtn {
+    background: #e8b4b8;
+    color: white;
+    box-shadow: 0 10px 20px rgba(232, 180, 184, 0.3);
+    z-index: 10;
+}
+#yesBtn:hover { transform: scale(1.1); background: #d4949a; }
+
+#noBtn {
+    background: #fdf2f2;
+    color: #b88a8a;
+    border: 2px solid #e8b4b8;
+    z-index: 10;
+}
+
+#message {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    z-index: 2000;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo-link">
+            <h2>Glow Beauty Studio</h2>
+        </a>
+        <ul>
+           <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="sac.html">Saç</a></li>
+            <li><a href="kaskirpik.html">Kirpik</a></li>
+            <li><a href="ciltbakimi.html">Cilt</a></li>
+            <li><a href="lazer.html">Lazer</a></li>
+            <li><a href="kalicimakyaj.html">Kalıcı Makyaj</a></li>
+            <li><a href="tirnak.html">Tırnak</a></li>
+            <li><a href="fiyat.html" >Fiyat & Kampanyalar</a></li>
+            <li><a href="ekip.html">Ekibimiz</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li><a href="memnuniyet.html" style="color: #e8b4b8;">Memnuniyet</a></li>
+    
+        </ul>
+    </nav>
+
+<div class="game-container">
+    <div class="question-box">
+        <h1 id="mainQuestion">Bugün kendinizi şımartmak için <br> bir randevu alalım mı? ✨</h1>
+        
+        <div class="button-wrapper">
+            <button class="btn" id="yesBtn" onclick="celebrate()">EVET</button>
+            <button class="btn" id="noBtn">HAYIR</button>
+        </div>
+    </div>
+</div>
+
+<div id="message">
+    <h2 style="color: #b88a8a; margin-bottom: 20px;">Harika Bir Karar! 🎉</h2>
+    <p>Sizin için en uygun saati belirleyelim.</p>
+    <br>
+    <a href="iletisim.html" style="color: #e8b4b8; font-weight: bold; text-decoration: none;">Randevu Sayfasına Git →</a>
+</div>
+
+<script>
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+const message = document.getElementById('message');
+
+noBtn.addEventListener('mouseover', () => {
+    const padding = 100;
+    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+    const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+    const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+
+    noBtn.style.position = 'fixed';
+    noBtn.style.left = randomX + 'px';
+    noBtn.style.top = randomY + 'px';
+});
+
+function celebrate() {
+    message.style.display = 'block';
+    noBtn.style.display = 'none';
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tırnak Tasarımı | Glow Beauty Studio</title>
+<link rel="icon" href="fotograflar/glowbeutyLogo2.png" type="image/gif">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+        font-family:'Poppins',sans-serif;
+        background:#fffafa;
+        color:#777;
+    }
+    
+    nav{
+        position:fixed;
+        width:100%;
+        top:0;
+        background:white;
+        padding:15px 50px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        box-shadow:0 5px 15px rgba(153, 117, 117, 0.05);
+        z-index:1000;
+    }
+    nav h2{letter-spacing:2px; color:#b88a8a; font-size: 1.2rem;}
+    nav ul{list-style:none;display:flex;gap:20px;}
+    nav a{text-decoration:none;color:#b88a8a;font-weight:500;transition:0.3s; font-size: 0.9rem;}
+    nav a:hover{color:#e8b4b8;}
+
+.hero{
+    height:70vh;
+    background:linear-gradient(rgba(232, 180, 184, 0.5),rgba(255, 255, 255, 0.2)),
+    url("fotograflar/tirnakhero.jpg") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    margin-top:80px;
+}
+.hero h1{font-size:55px; animation:fadeUp 1.2s ease;}
+.hero p{margin-top:20px; font-size:20px; animation:fadeUp 1.6s ease;}
+
+.gallery-section { padding: 80px 10%; text-align: center; }
+.gallery-section h2 { color: #b88a8a; margin-bottom: 50px; font-size: 32px; }
+.nail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.nail-item { 
+    position: relative; 
+    border-radius: 25px; 
+    overflow: hidden; 
+    height: 350px; 
+    cursor: default; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+}
+.nail-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.nail-overlay { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(transparent, rgba(184, 138, 138, 0.8)); display: flex; flex-direction: column; justify-content: flex-end; padding: 25px; color: white; opacity: 0; transition: 0.4s; }
+.nail-item:hover img { transform: scale(1.1); }
+.nail-item:hover .nail-overlay { opacity: 1; }
+
+.price-info { padding: 80px 10%; background: white; }
+.price-info h2 { text-align: center; color: #b88a8a; margin-bottom: 40px; }
+.nail-table { width: 100%; border-collapse: collapse; background: #fffafa; border-radius: 20px; overflow: hidden; }
+.nail-table th, .nail-table td { padding: 20px; text-align: left; border-bottom: 1px solid #f2e4e4; }
+.nail-table th { background: #fdf2f2; color: #b88a8a; }
+
+.shape-guide { padding: 80px 10%; text-align: center; }
+.shape-guide h2 { color: #b88a8a; margin-bottom: 40px; }
+.shape-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+.shape-card { background: white; padding: 30px; border-radius: 20px; width: 200px; border: 1px solid #f9f9f9; transition: 0.3s; }
+.shape-card:hover { border-color: #e8b4b8; transform: translateY(-5px); }
+
+.hygiene-banner {
+    padding: 60px 10%; background: #fdf2f2; display: flex; align-items: center; gap: 40px; border-radius: 50px; margin: 40px 10%;
+}
+.hygiene-text h3 { color: #b88a8a; margin-bottom: 10px; }
+
+.faq-section { padding: 80px 10%; background: white; }
+.faq-section h2 { text-align: center; color: #b88a8a; margin-bottom: 40px; }
+.faq-container { max-width: 800px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid #fdf2f2; padding: 20px 0; }
+.faq-question { display: flex; justify-content: space-between; cursor: pointer; color: #b88a8a; font-weight: 600; }
+.faq-answer { max-height: 0; overflow: hidden; transition: 0.4s ease; color: #888; font-size: 0.95rem; line-height: 1.6; }
+.faq-item.active .faq-answer { max-height: 200px; margin-top: 15px; }
+
+.wp-float {
+    position: fixed; bottom: 30px; right: 30px;
+    background: #25d366; color: white; width: 60px; height: 60px;
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    font-size: 30px; text-decoration: none; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    z-index: 3000; transition: 0.3s;
+}
+
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(184, 138, 138, 0.4); backdrop-filter: blur(8px);
+    display: none; justify-content: center; align-items: center; z-index: 2000;
+}
+.modal-content {
+    background: white; padding: 40px; border-radius: 30px; width: 90%; max-width: 500px; text-align: center; position: relative;
+}
+.close-modal { position: absolute; top: 20px; right: 25px; font-size: 30px; cursor: pointer; color: #b88a8a; }
+
+.cta{ padding:100px 20px; text-align:center; background: #fff; }
+.cta a{ display:inline-block; margin-top:30px; padding:18px 50px; background:#e8b4b8; color:#fff; text-decoration:none; border-radius:50px; font-weight: bold; transition:0.3s; }
+
+@keyframes fadeUp{ from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+</style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo-link">
+            <h2>Glow Beauty Studio</h2>
+        </a>
+        <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="sac.html">Saç</a></li>
+            <li><a href="kaskirpik.html">Kirpik</a></li>
+            <li><a href="ciltbakimi.html">Cilt</a></li>
+            <li><a href="lazer.html">Lazer</a></li>
+            <li><a href="kalicimakyaj.html">Kalıcı Makyaj</a></li>
+            <li><a href="tirnak.html" style="color: #e8b4b8;">Tırnak</a></li>
+            <li><a href="fiyat.html">Fiyat & Kampanyalar</a></li>
+            <li><a href="ekip.html">Ekibimiz</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li><a href="memnuniyet.html">Memnuniyet</a></li>
+        </ul>
+    </nav>
+
+<section class="hero">
+    <div>
+        <h1>Sanat Parmak Uçlarınızda</h1>
+        <p>Kalıcı oje, protez tırnak ve nail art ile tarzınızı yansıtın.</p>
+    </div>
+</section>
+
+<section class="gallery-section">
+    <h2>En Popüler Tasarımlarımız</h2>
+    <div class="nail-grid">
+        <div class="nail-item">
+            <img src="fotograflar/proteztirnak.jpg">
+            <div class="nail-overlay">
+                <h3>Protez Tırnak</h3>
+                <p>Jel veya Akrilik sistemle kusursuz uzunluk.</p>
+            </div>
+        </div>
+        <div class="nail-item">
+            <img src="fotograflar/nailart.jpg">
+            <div class="nail-overlay">
+                <h3>Özel Nail Art</h3>
+                <p>Kişiye özel el çizimi tasarımlar.</p>
+            </div>
+        </div>
+        <div class="nail-item">
+            <img src="fotograflar/kalicioje.jpg">
+            <div class="nail-overlay">
+                <h3>Kalıcı Oje</h3>
+                <p>Kusursuz parlaklık ve 3 hafta dayanıklılık.</p>
+            </div>
+        </div>
+        <div class="nail-item">
+            <img src="fotograflar/manikur.jpg">
+            <div class="nail-overlay">
+                <h3>Medikal Manikür</h3>
+                <p>Cihazlı manikür ile tertemiz tırnak etleri.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="price-info">
+    <h2>İşlem Detayları</h2>
+    <table class="nail-table">
+        <thead>
+            <tr>
+                <th>Hizmet</th>
+                <th>Süre (Ortalama)</th>
+                <th>Kalıcılık</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Protez Tırnak (Yeni Set)</td>
+                <td>120 Dakika</td>
+                <td>4 Hafta</td>
+            </tr>
+            <tr>
+                <td>Kalıcı Oje + Manikür</td>
+                <td>60 Dakika</td>
+                <td>3 Hafta</td>
+            </tr>
+            <tr>
+                <td>Jel Bakım (Alt Dolgu)</td>
+                <td>90 Dakika</td>
+                <td>3-4 Hafta</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="shape-guide">
+    <h2>Sizin Formunuz Hangisi?</h2>
+    <div class="shape-grid">
+        <div class="shape-card">
+            <strong>Badem (Almond)</strong>
+            <p style="font-size: 13px; margin-top:10px;">Parmakları daha uzun ve ince gösteren en popüler form.</p>
+        </div>
+        <div class="shape-card">
+            <strong>Kare (Square)</strong>
+            <p style="font-size: 13px; margin-top:10px;">Modern ve güçlü bir görünüm arayanlar için klasik.</p>
+        </div>
+        <div class="shape-card">
+            <strong>Tabut (Coffin)</strong>
+            <p style="font-size: 13px; margin-top:10px;">Cesur, uzun ve gösterişli tırnakların tercihi.</p>
+        </div>
+    </div>
+</section>
+
+<section class="hygiene-banner">
+    <div style="font-size: 40px;">🛡️</div>
+    <div class="hygiene-text">
+        <h3>%100 Steril ve Güvenli</h3>
+        <p>Tüm metal ekipmanlarımız her kullanım sonrası tıbbi otoklav cihazında sterilize edilmektedir. Sağlığınız bizim için önceliktir.</p>
+    </div>
+</section>
+
+<section class="faq-section">
+    <h2>Tırnak Hakkında Sıkça Sorulanlar</h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">Protez tırnak kendi tırnağıma zarar verir mi? <span>+</span></div>
+            <div class="faq-answer">Doğru teknikle uygulanan ve profesyonelce çıkartılan protez tırnak, doğal tırnağınıza zarar vermez. En önemli kural, tırnakları kendiniz koparmamanızdır.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Kalıcı oje ne kadar süre dayanır? <span>+</span></div>
+            <div class="faq-answer">Kalıcı oje, tırnak yapınıza ve kullanımınıza bağlı olarak ortalama 2-3 hafta boyunca parlaklığını ve yapısını korur.</div>
+        </div>
+    </div>
+</section>
+
+<section style="text-align: center; padding: 40px 0;">
+    <button onclick="openTeam()" style="padding:15px 45px; background:#fdf2f2; color:#b88a8a; border:2px solid #e8b4b8; border-radius:40px; cursor:pointer; font-weight:bold;">Tırnak Sanatçılarımızla Tanışın</button>
+</section>
+
+<div class="modal-overlay" id="teamModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeTeam()">&times;</span>
+        <h3 style="color: #b88a8a; margin-bottom: 20px;">Tırnak Tasarım Uzmanlarımız</h3>
+        <div style="display: flex; justify-content: space-around; gap: 20px;">
+            <div>
+                <img src="fotograflar/selin.jpg" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #e8b4b8;">
+                <h4 style="margin-top:10px;">Selin Yılmaz</h4>
+                <p style="font-size: 12px;">Nail Art Expert</p>
+            </div>
+            <div>
+                <img src="fotograflar/melis.jpg" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #e8b4b8;">
+                <h4 style="margin-top:10px;">Melis Ece</h4>
+                <p style="font-size: 12px;">Protez Uzmanı</p>
+            </div>
+        </div>
+        <p style="margin-top: 25px; font-size: 14px; color: #999;">Hayalinizdeki tasarımı gerçeğe dönüştürelim.</p>
+    </div>
+</div>
+
+<section class="cta">
+    <h2>Ellerinize Bir İyilik Yapın ✨</h2>
+    <a href="iletisim.html">Hemen Randevunu Al</a>
+</section>
+
+<a href="https://wa.me/905000000000" class="wp-float" target="_blank">💬</a>
+
+<script>
+function openTeam() { document.getElementById("teamModal").style.display = "flex"; }
+function closeTeam() { document.getElementById("teamModal").style.display = "none"; }
+
+document.querySelectorAll('.faq-question').forEach(item => {
+    item.addEventListener('click', () => {
+        item.parentElement.classList.toggle('active');
+    });
+});
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById("teamModal")) {
+        closeTeam();
+    }
+}
+</script>
+
+</body>
+</html>

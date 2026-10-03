@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lazer Epilasyon | Glow Beauty Studio</title>
+<link rel="icon" href="fotograflar/glowbeutyLogo2.png" type="image/gif">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+        font-family:'Poppins',sans-serif;
+        background:#fffafa;
+        color:#777;
+    }
+    
+    nav{
+        position:fixed;
+        width:100%;
+        top:0;
+        background:white;
+        padding:15px 50px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        box-shadow:0 5px 15px rgba(153, 117, 117, 0.05);
+        z-index:1000;
+    }
+    nav h2{letter-spacing:2px; color:#b88a8a; font-size: 1.2rem;}
+    nav ul{list-style:none;display:flex;gap:20px;}
+    nav a{text-decoration:none;color:#b88a8a;font-weight:500;transition:0.3s; font-size: 0.9rem;}
+    nav a:hover{color:#e8b4b8;}
+    
+.hero{
+    height:70vh;
+    background:linear-gradient(rgba(232, 180, 184, 0.5),rgba(255, 255, 255, 0.2)),
+    url("fotograflar/tirnakhero.jpg") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    margin-top:80px;
+}
+.hero h1{font-size:55px; animation:fadeUp 1.2s ease;}
+.hero p{margin-top:20px; font-size:20px; animation:fadeUp 1.6s ease;}
+
+
+.stats-bar {
+    display: flex;
+    justify-content: space-around;
+    padding: 60px 10%;
+    background: white;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+.stat-item h2 { color: #e8b4b8; font-size: 35px; margin-bottom: 5px; }
+.stat-item p { font-weight: 500; color: #b88a8a; }
+
+.lazer-features {
+    padding: 80px 10%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.feature-card {
+    padding: 40px;
+    background: white;
+    border-radius: 30px;
+    border: 1px solid #f0f0f0;
+    transition: 0.4s;
+    text-align: center;
+    cursor: pointer;
+}
+.feature-card:hover { transform: translateY(-10px); border-color: #e8b4b8; box-shadow: 0 15px 30px rgba(232, 180, 184, 0.1); }
+.feature-icon { font-size: 40px; margin-bottom: 20px; display: block; }
+.feature-card h3 { color: #b88a8a; margin-bottom: 15px; }
+
+.zones-section { padding: 80px 10%; text-align: center; background: white; }
+.zone-grid {
+    display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 40px;
+}
+.zone-item {
+    background: #fffafa; padding: 15px 30px; border-radius: 50px; border: 1px solid #fce4ec; color: #b88a8a; font-weight: 500;
+}
+
+.lazer-guide {
+    padding: 80px 10%; display: flex; gap: 50px; flex-wrap: wrap; align-items: center;
+}
+.guide-box {
+    flex: 1; min-width: 300px; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+.guide-box h3 { color: #b88a8a; margin-bottom: 20px; border-bottom: 2px solid #fdf2f2; padding-bottom: 10px; }
+.guide-box ul { list-style: none; }
+.guide-box li { margin-bottom: 12px; padding-left: 25px; position: relative; font-size: 14px; }
+.guide-box li::before { content: "✓"; position: absolute; left: 0; color: #e8b4b8; font-weight: bold; }
+
+.faq-section { padding: 100px 15%; background: #fffafa; }
+.faq-section h2 { text-align: center; margin-bottom: 50px; color: #b88a8a; }
+.faq-item { background: white; margin-bottom: 15px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
+.faq-question { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 600; color: #b88a8a; }
+.faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: 0.3s; color: #999; line-height: 1.6; }
+
+.wp-float {
+    position: fixed; bottom: 30px; right: 30px;
+    background: #25d366; color: white; width: 60px; height: 60px;
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    font-size: 30px; text-decoration: none; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    z-index: 3000; transition: 0.3s;
+}
+.wp-float:hover { transform: scale(1.1); }
+
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(184, 138, 138, 0.4); backdrop-filter: blur(8px);
+    display: none; justify-content: center; align-items: center; z-index: 2000;
+}
+.modal-content {
+    background: white; padding: 50px; border-radius: 35px; width: 90%; max-width: 500px; text-align: center; position: relative;
+}
+.close-modal { position: absolute; top: 20px; right: 25px; font-size: 30px; cursor: pointer; color: #b88a8a; }
+
+.cta { padding: 80px 20px 120px; text-align: center; background: linear-gradient(135deg,#fce4ec,#fff9c4); }
+.cta a {
+    display: inline-block; padding: 18px 50px; background: #e8b4b8; color: #fff;
+    text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s;
+}
+
+@keyframes fadeUp{ from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+</style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo-link">
+            <h2>Glow Beauty Studio</h2>
+        </a>
+        <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="sac.html">Saç</a></li>
+            <li><a href="kaskirpik.html">Kirpik</a></li>
+            <li><a href="ciltbakimi.html">Cilt</a></li>
+            <li><a href="lazer.html" style="color: #e8b4b8;">Lazer</a></li>
+            <li><a href="kalicimakyaj.html">Kalıcı Makyaj</a></li>
+            <li><a href="tirnak.html">Tırnak</a></li>
+            <li><a href="fiyat.html">Fiyat & Kampanyalar</a></li>
+            <li><a href="ekip.html">Ekibimiz</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li><a href="memnuniyet.html">Memnuniyet</a></li>
+        </ul>
+    </nav>
+
+<section class="hero">
+    <div>
+        <h1>Pürüzsüz Bir Gelecek</h1>
+        <p>En son teknoloji buz başlıklı lazer sistemleri ile acısız konfor.</p>
+    </div>
+</section>
+
+<section class="stats-bar">
+    <div class="stat-item"><h2>%100</h2><p>Müşteri Memnuniyeti</p></div>
+    <div class="stat-item"><h2>8+</h2><p>Seans Etkisi</p></div>
+    <div class="stat-item"><h2>-4°C</h2><p>Buz Başlık Soğutma</p></div>
+</section>
+
+<section class="lazer-features">
+    <div class="feature-card" onclick="openLazerModal('buz')">
+        <span class="feature-icon">❄️</span>
+        <h3>Buz Başlık Konforu</h3>
+        <p>Seans sırasında acıyı minimuma indiren soğutma sistemi.</p>
+    </div>
+    <div class="feature-card" onclick="openLazerModal('hizli')">
+        <span class="feature-icon">⚡</span>
+        <h3>Hızlı Sonuç</h3>
+        <p>İlk seanstan itibaren tüylerde gözle görülür azalma.</p>
+    </div>
+    <div class="feature-card" onclick="openLazerModal('hercilt')">
+        <span class="feature-icon">💎</span>
+        <h3>Her Cilt Tipine Uygun</h3>
+        <p>Dört mevsim güvenle uygulanabilen akıllı teknoloji.</p>
+    </div>
+</section>
+
+<section class="zones-section">
+    <h2 style="color: #b88a8a;">Uygulama Bölgeleri</h2>
+    <div class="zone-grid">
+        <div class="zone-item">Tüm Vücut</div>
+        <div class="zone-item">Genital</div>
+        <div class="zone-item">Koltuk Altı</div>
+        <div class="zone-item">Tüm Bacak</div>
+        <div class="zone-item">Yüz Bölgesi</div>
+        <div class="zone-item">Kol</div>
+    </div>
+</section>
+
+<section class="lazer-guide">
+    <div class="guide-box">
+        <h3>İşlem Öncesi</h3>
+        <ul>
+            <li>En az 1 ay öncesine kadar tüyleri kökten almayın (cımbız, ağda vb.).</li>
+            <li>Seansa gelmeden 24 saat önce uygulama bölgesini jiletle temizleyin.</li>
+            <li>Cildinizde makyaj, krem veya deodorant olmamasına dikkat edin.</li>
+        </ul>
+    </div>
+    <div class="guide-box">
+        <h3>İşlem Sonrası</h3>
+        <ul>
+            <li>İlk 24 saat uygulama bölgesine sıcak su değdirmeyin.</li>
+            <li>Güneş ışığına direkt maruz kalmayın, yüksek faktörlü koruyucu kullanın.</li>
+            <li>Cildinizi bol bol nemlendirin (parfümsüz losyonlar ile).</li>
+        </ul>
+    </div>
+</section>
+
+<section class="faq-section">
+    <h2>Lazer Epilasyon Hakkında Sıkça Sorulanlar</h2>
+    <div class="faq-item">
+        <div class="faq-question">Lazer epilasyon kaç seans sürer? <span>+</span></div>
+        <div class="faq-answer"><p style="padding: 20px;">Kıl yapısı ve yoğunluğuna göre değişmekle birlikte, kalıcı sonuçlar için genellikle 6-8 seans önerilmektedir.</p></div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">Beyaz tüylere lazer etki eder mi? <span>+</span></div>
+        <div class="faq-answer"><p style="padding: 20px;">Lazer ışınları kıl kökündeki melanin (renk pigmenti) hedef alır. Bu nedenle beyaz, çok sarı veya kızıl tüylerde etkinlik oldukça düşüktür.</p></div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">Seans aralıkları ne kadar olmalıdır? <span>+</span></div>
+        <div class="faq-answer"><p style="padding: 20px;">Vücut bölgeleri için genellikle 4-6 hafta, yüz bölgesi için ise 3-4 haftalık aralıklar idealdir.</p></div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">Yazın lazer yapılır mı? <span>+</span></div>
+        <div class="faq-answer"><p style="padding: 20px;">Evet, yeni nesil Buz Başlık teknolojimizle yaz aylarında da güvenle uygulama yapıyoruz. Sadece işlemden sonraki ilk 3 gün yoğun güneşten kaçınmanız yeterlidir.</p></div>
+    </div>
+</section>
+
+<section class="team-preview" style="text-align: center; padding: 60px;">
+    <button onclick="openTeamModal()" style="padding:15px 45px; background:#fdf2f2; color:#b88a8a; border:2px solid #e8b4b8; border-radius:40px; cursor:pointer; font-weight:bold;">Uzman Kadromuzu Gör</button>
+</section>
+
+<div class="modal-overlay" id="lazerModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('lazerModal')">&times;</span>
+        <h3 id="modalTitle" style="color:#b88a8a; margin-bottom:15px;"></h3>
+        <p id="modalDesc" style="color:#888; line-height:1.6;"></p>
+    </div>
+</div>
+
+<div class="modal-overlay" id="teamModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('teamModal')">&times;</span>
+        <h3 style="color:#b88a8a; margin-bottom:20px;">Lazer Uzmanlarımız</h3>
+        <p><strong>Ceren Aksoy</strong> - Lazer Epilasyon Uzmanı</p>
+        <p><strong>Zeynep Tan</strong> - Estetik Danışmanı</p>
+    </div>
+</div>
+
+<section class="cta">
+    <h2>Yaza Pürüzsüz Merhaba Deyin ✨</h2>
+    <a href="iletisim.html">Hemen Randevu Oluştur</a>
+</section>
+
+<a href="https://wa.me/905000000000" class="wp-float" target="_blank">💬</a>
+
+<script>
+const questions = document.querySelectorAll(".faq-question");
+questions.forEach(question => {
+    question.addEventListener("click", () => {
+        const answer = question.nextElementSibling;
+        const span = question.querySelector("span");
+        if (answer.style.maxHeight) {
+            answer.style.maxHeight = null;
+            span.textContent = "+";
+        } else {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+            span.textContent = "-";
+        }
+    });
+});
+
+function openLazerModal(type) {
+    const modal = document.getElementById('lazerModal');
+    const title = document.getElementById('modalTitle');
+    const desc = document.getElementById('modalDesc');
+
+    if(type === 'buz') {
+        title.innerText = "Buz Başlık Teknolojisi";
+        desc.innerText = "Dünya standartlarında soğutma sistemiyle cildi -4 dereceye kadar dondurarak sinir uçlarını sakinleştirir, en hassas bölgelerde bile konfor sağlar.";
+    } else if(type === 'hizli') {
+        title.innerText = "Hızlı Seanslar";
+        desc.innerText = "Yüksek tarama hızı sayesinde tüm vücut seansı 45 dakika gibi kısa bir sürede tamamlanır. Zamandan tasarruf edin!";
+    } else if(type === 'hercilt') {
+        title.innerText = "Her Cilt Tipi";
+        desc.innerText = "Akıllı okuma sistemi cilt tipinizi ve kıl yoğunluğunuzu analiz ederek dozu otomatik ayarlar, yanık riskini sıfıra indirir.";
+    }
+    modal.style.display = "flex";
+}
+
+function openTeamModal() { document.getElementById('teamModal').style.display = "flex"; }
+function closeModal(id) { document.getElementById(id).style.display = "none"; }
+
+window.onclick = (e) => { if(e.target.className === 'modal-overlay') e.target.style.display = "none"; }
+</script>
+
+</body>
+</html>

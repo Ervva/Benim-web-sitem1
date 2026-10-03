@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaş & Kirpik Tasarım | Glow Beauty Studio</title>
+<link rel="icon" href="fotograflar/glowbeutyLogo2.png" type="image/gif">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+        font-family:'Poppins',sans-serif;
+        background:#fffafa;
+        color:#777;
+    }
+    
+    nav{
+        position:fixed;
+        width:100%;
+        top:0;
+        background:white;
+        padding:15px 50px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        box-shadow:0 5px 15px rgba(153, 117, 117, 0.05);
+        z-index:1000;
+    }
+    nav h2{letter-spacing:2px; color:#b88a8a; font-size: 1.2rem;}
+    nav ul{list-style:none;display:flex;gap:20px;}
+    nav a{text-decoration:none;color:#b88a8a;font-weight:500;transition:0.3s; font-size: 0.9rem;}
+    nav a:hover{color:#e8b4b8;}
+    
+.hero{
+    height:70vh;
+    background:linear-gradient(rgba(232, 180, 184, 0.5),rgba(255, 255, 255, 0.2)),
+    url("fotograflar/tirnakhero.jpg") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    margin-top:80px;
+}
+.hero h1{font-size:55px; animation:fadeUp 1.2s ease;}
+.hero p{margin-top:20px; font-size:20px; animation:fadeUp 1.6s ease;}
+
+
+.services{ padding:80px 15%; }
+.service-row{
+    display:flex;
+    align-items:center;
+    gap:60px;
+    margin-bottom:100px;
+}
+.service-row:nth-child(even){ flex-direction:row-reverse; }
+.service-row img{
+    width:350px;
+    height:350px;
+    object-fit:cover;
+    border-radius:30px;
+    box-shadow: 0 15px 35px rgba(184, 138, 138, 0.1);
+    transition: 0.4s;
+}
+.service-row img:hover { transform: translateY(-10px); }
+
+.service-content h3{ color:#b88a8a; font-size:32px; margin-bottom:15px; }
+.service-content p{ font-size:16px; line-height:1.7; margin-bottom:25px; }
+
+.target-audience {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    border-left: 5px solid #e8b4b8;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+}
+.target-audience span { display: block; font-weight: bold; color: #b88a8a; margin-bottom: 8px; font-size: 14px; text-transform: uppercase; }
+.target-audience p { font-size: 14px !important; font-style: italic; margin-bottom: 0 !important; }
+
+.process-section { background: white; padding: 80px 10%; text-align: center; }
+.process-grid { display: flex; justify-content: space-around; gap: 30px; margin-top: 40px; }
+.step { flex: 1; padding: 20px; }
+.step-num { width: 50px; height: 50px; background: #fdf2f2; color: #b88a8a; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: bold; border: 1px solid #e8b4b8; }
+.step h4 { color: #b88a8a; margin-bottom: 10px; }
+
+.care-guide { padding: 80px 15%; background: #fdf2f2; border-radius: 50px; margin: 50px 10%; text-align: center; }
+.care-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; }
+.care-item { background: white; padding: 25px; border-radius: 20px; font-size: 14px; }
+
+.faq-section { padding: 80px 10%; background: #fff; }
+.faq-section h2 { text-align: center; color: #b88a8a; margin-bottom: 40px; }
+.faq-container { max-width: 800px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid #fdf2f2; padding: 20px 0; }
+.faq-question { 
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; color: #b88a8a; font-weight: 600; font-size: 1.1rem;
+}
+.faq-answer { 
+    max-height: 0; overflow: hidden; transition: 0.4s ease; 
+    color: #888; font-size: 0.95rem; line-height: 1.6;
+}
+.faq-item.active .faq-answer { max-height: 300px; margin-top: 15px; }
+.faq-question::after { content: "+"; font-size: 22px; transition: 0.3s; }
+.faq-item.active .faq-question::after { content: "−"; transform: rotate(180deg); }
+
+.wp-float {
+    position: fixed; bottom: 30px; right: 30px;
+    background: #25d366; color: white; width: 60px; height: 60px;
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    font-size: 30px; text-decoration: none; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    z-index: 3000; transition: 0.3s;
+}
+.wp-float:hover { transform: scale(1.1); }
+
+.team-preview { padding: 60px 20px; text-align: center; }
+.open-btn {
+    padding: 15px 45px;
+    background:#fdf2f2;
+    color:#b88a8a;
+    border: 2px solid #e8b4b8;
+    border-radius:50px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+.open-btn:hover { background: #e8b4b8; color: white; }
+
+.team-box{
+    position:fixed;
+    top:0; left:0; width:100%; height:100%;
+    background:rgba(184, 138, 138, 0.5);
+    backdrop-filter: blur(5px);
+    display:none; justify-content:center; align-items:center; z-index:2000;
+}
+.team-content{
+    background:white; width:90%; max-width:500px; padding:50px; border-radius:35px; position:relative; text-align: center;
+}
+#closeTeam{ position:absolute; top:20px; right:25px; font-size:30px; cursor:pointer; color: #b88a8a;}
+
+.cta{ padding: 80px 20px 120px; text-align:center; background:#fffafa; }
+.cta a{
+    display:inline-block; margin-top:30px; padding:18px 50px; background:#e8b4b8; color:#fff;
+    text-decoration:none; border-radius:50px; font-weight: bold; transition:0.3s;
+}
+
+@keyframes fadeUp{ from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+</style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo-link">
+            <h2>Glow Beauty Studio</h2>
+        </a>
+        <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="sac.html">Saç</a></li>
+            <li><a href="kaskirpik.html" style="color: #e8b4b8;">Kirpik</a></li>
+            <li><a href="ciltbakimi.html">Cilt</a></li>
+            <li><a href="lazer.html">Lazer</a></li>
+            <li><a href="kalicimakyaj.html">Kalıcı Makyaj</a></li>
+            <li><a href="tirnak.html">Tırnak</a></li>
+            <li><a href="fiyat.html">Fiyat & Kampanyalar</a></li>
+            <li><a href="ekip.html">Ekibimiz</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li><a href="memnuniyet.html">Memnuniyet</a></li>
+        </ul>
+    </nav>
+
+<section class="hero">
+    <div>
+        <h1>Bakışların Sihri</h1>
+        <p>Doğal, zarif ve unutulmaz bir görünüm için.</p>
+    </div>
+</section>
+
+<section class="process-section">
+    <h2 style="color: #b88a8a;">Nasıl Uyguluyoruz?</h2>
+    <div class="process-grid">
+        <div class="step">
+            <div class="step-num">1</div>
+            <h4>Analiz</h4>
+            <p>Göz yapınıza ve yüz hattınıza en uygun formu ekiplerimizle belirliyoruz.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <h4>Hazırlık</h4>
+            <p>Steril ortamda kirpik ve kaşlarınızı işleme hazır hale getiriyoruz.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <h4>Uygulama</h4>
+            <p>En kaliteli materyallerle hayalinizdeki bakışlara kavuşturuyoruz.</p>
+        </div>
+    </div>
+</section>
+
+<section class="services">
+    <div class="service-row">
+        <img src="fotograflar/ipekkirpik.jpg">
+        <div class="service-content">
+            <h3>İpek Kirpik</h3>
+            <p>Tek tek uygulanan ipek lifleri ile kirpiklerinize doğal bir hacim katıyoruz. Göz yapınıza göre Classic, Volume veya Mega Volume seçenekleri sunuyoruz.</p>
+            <div class="target-audience">
+                <span>Kimler İçin Uygundur?</span>
+                <p>Kısa ve seyrek kirpiğe sahip olanlar, sabahları makyaj süresinden tasarruf etmek isteyenler için mükemmeldir.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="service-row">
+        <img src="fotograflar/kirpikliftin.jpg">
+        <div class="service-content">
+            <h3>Kirpik Lifting</h3>
+            <p>Kendi kirpiklerinizi vitamin bakımıyla kökten uca kıvırıyor ve belirginleştiriyoruz. Kimyasal içermeyen, besleyici bir işlemdir.</p>
+            <div class="target-audience">
+                <span>Kimler İçin Uygundur?</span>
+                <p>Kendi kirpiği uzun olup düşük duranlar ve doğal bir kıvrım arayanlar için idealdir.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="service-row">
+        <img src="fotograflar/kaslaminasyon.jpg">
+        <div class="service-content">
+            <h3>Kaş Laminasyon</h3>
+            <p>Kaş formunu yukarı yönde sabitleyerek daha dolgun ve düzenli bir ifade sağlıyoruz. Kaş botoksu ile birleştirilerek kaşları besler.</p>
+            <div class="target-audience">
+                <span>Kimler İçin Uygundur?</span>
+                <p>Sert kaş yapısına sahip olanlar, boşluklu veya aşağı doğru düşen kaş şikayeti olanlar için harikadır.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="care-guide">
+    <h2 style="color: #b88a8a;">İşlem Sonrası Altın Kurallar</h2>
+    <div class="care-grid">
+        <div class="care-item">
+            <strong>İlk 24 Saat</strong>
+            <p>Su ile temastan kaçının ve buhara maruz kalmayın.</p>
+        </div>
+        <div class="care-item">
+            <strong>Yağsız Ürünler</strong>
+            <p>Makyaj temizlerken yağ bazlı temizleyiciler kullanmayın.</p>
+        </div>
+        <div class="care-item">
+            <strong>Nazik Olun</strong>
+            <p>Gözlerinizi ovuşturmayın ve kirpiklerinizi çekiştirmeyin.</p>
+        </div>
+        <div class="care-item">
+            <strong>Tarama</strong>
+            <p>Size hediye edeceğimiz fırça ile her gün nazikçe tarayın.</p>
+        </div>
+    </div>
+</section>
+
+<section class="faq-section">
+    <h2>Merak Edilenler</h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">İpek kirpik kendi kirpiklerimi döker mi?</div>
+            <div class="faq-answer">Doğru teknik ve profesyonel malzemelerle uygulandığında kendi kirpiklerinize zarar vermez. Kirpiklerinizin doğal dökülme evresini bozmaz.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Kirpik lifting ne kadar süre kalıcıdır?</div>
+            <div class="faq-answer">İşlemin kalıcılığı kirpik yapınıza göre 6 ile 8 hafta arasında değişmektedir.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Kaş laminasyonu kaşlarıma zarar verir mi?</div>
+            <div class="faq-answer">Hayır, aksine işlem sırasında uygulanan vitamin ve keratin bakımları kaş kıllarını besleyerek daha sağlıklı bir görünüm kazandırır.</div>
+        </div>
+    </div>
+</section>
+
+<section class="team-preview">
+    <button class="open-btn" id="openTeam">Uzmanlarımızı Gör</button>
+</section>
+
+<div class="team-box" id="teamBox">
+    <div class="team-content">
+        <span id="closeTeam">&times;</span>
+        <h2 style="color: #b88a8a; margin-bottom: 25px;">Bakış Uzmanlarımız</h2>
+        <div style="margin-bottom: 15px;">
+            <strong style="color:#555">Selin Kaya</strong>
+            <p style="font-size: 13px; color:#999">Kaş Tasarım & Mikroblading Uzmanı</p>
+        </div>
+        <div>
+            <strong style="color:#555">Elif Yılmaz</strong>
+            <p style="font-size: 13px; color:#999">Kirpik Tasarım & Lifting Uzmanı</p>
+        </div>
+    </div>
+</div>
+
+<section class="cta">
+    <h2>Güzelliğinizi Taçlandırın ✨</h2>
+    <p style="margin-top:10px">Randevunuzu oluşturun, değişimi birlikte başlatalım.</p>
+    <a href="iletisim.html">Hemen Randevu Al</a>
+</section>
+
+<a href="https://wa.me/905000000000" class="wp-float" target="_blank">💬</a>
+
+<script>
+    const openTeam=document.getElementById("openTeam");
+    const teamBox=document.getElementById("teamBox");
+    const closeTeam=document.getElementById("closeTeam");
+    openTeam.onclick = () => teamBox.style.display="flex";
+    closeTeam.onclick = () => teamBox.style.display="none";
+    window.onclick = (e) => { if(e.target===teamBox) teamBox.style.display="none"; }
+
+    document.querySelectorAll('.faq-question').forEach(item => {
+        item.addEventListener('click', () => {
+            const parent = item.parentElement;
+            parent.classList.toggle('active');
+        });
+    });
+</script>
+
+</body>
+</html>

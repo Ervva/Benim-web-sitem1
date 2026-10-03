@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glow Beauty Studio | Profesyonel Güzellik Dokunuşları</title>
+
+<link rel="icon" href="fotograflar/glowbeutyLogo2.png" type="image/gif">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+html{scroll-behavior:smooth}
+body{background:#ffffff;color:#777;overflow-x:hidden}
+
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    background:rgba(255,255,255,0.95);
+    padding:20px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 5px 15px rgba(153, 117, 117, 0.05);
+    z-index:1000;
+}
+nav h2{letter-spacing:2px; color:#b88a8a;}
+nav ul{list-style:none;display:flex;gap:30px;}
+nav a{text-decoration:none;color:#b88a8a;font-weight:500;transition:0.3s;}
+nav a:hover{color:#e8b4b8;}
+
+.hero{
+    height:100vh;
+    background:linear-gradient(rgba(248, 211, 224, 0.4), rgba(252, 234, 187, 0.3)), 
+    url("fotograflar/hero-main.jpg") center/cover no-repeat;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+.hero h1{font-size:4rem; font-weight:700; color:#b88a8a; margin-bottom:10px;}
+.hero p{font-size:1.4rem; color:#888; margin-bottom:30px;}
+.hero button{
+    padding:16px 45px;
+    border:none;
+    border-radius:50px;
+    background:#e8b4b8;
+    color:#fff;
+    font-size:1.1rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow: 0 10px 25px rgba(232, 180, 184, 0.4);
+}
+.hero button:hover{transform:translateY(-3px); background:#d4949a;}
+
+.services{padding:100px 5%; background:#fff; position:relative;}
+.services h2{text-align:center; font-size:2.8rem; color:#b88a8a; margin-bottom:60px}
+
+.services-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.services-container{
+    display:flex;
+    gap:30px;
+    overflow-x: hidden;
+    scroll-behavior:smooth;
+    padding:20px 0;
+}
+
+.service-card{
+    flex:0 0 300px;
+    background:white;
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.03);
+    border: 1px solid #f9f9f9;
+    text-align:center;
+    transition: 0.4s;
+}
+.service-card:hover{transform:translateY(-10px); border-color:#e8b4b8;}
+.service-card img{width:100%; height:180px; object-fit:cover; border-radius:20px; margin-bottom:20px}
+.service-card h3{color:#b88a8a; margin-bottom:15px; font-size:1.3rem}
+.service-card p{font-size:0.9rem; margin-bottom:20px; color:#999;}
+
+.service-card .btn{
+    display:inline-block;
+    padding:10px 30px;
+    background:#fdf2f2;
+    color:#b88a8a;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:0.85rem;
+    transition:0.3s;
+}
+.service-card .btn:hover{background:#e8b4b8; color:white;}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+    z-index: 10;
+    color: #e8b4b8;
+    font-size: 20px;
+    font-weight: bold;
+}
+.prev-btn { left: -20px; }
+.next-btn { right: -20px; }
+
+.before-after{padding:100px 10%; background:#fffafa; text-align:center}
+.before-after h2{font-size:2.5rem; color:#b88a8a; margin-bottom:50px}
+.ba-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+.ba-image-box {
+    position: relative;
+    width: 400px;
+    overflow: hidden;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+}
+.ba-image-box img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: 0.8s ease-in-out;
+}
+.ba-label {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(232, 180, 184, 0.8);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.stats{padding:100px 10%; background:#fff; text-align:center}
+.stats-grid{display:flex; justify-content:center; gap:100px; flex-wrap:wrap}
+.stat h3{font-size:3rem; color:#e8b4b8; margin-bottom:10px}
+.stat p{color:#999; font-weight: 500;}
+
+.testimonials{padding:100px 10%; background:#fdf2f2; text-align:center}
+.testimonial-box{
+    max-width:800px; margin:0 auto; 
+    font-size:1.4rem; color:#b88a8a; font-style:italic;
+    min-height:100px; transition:0.5s;
+}
+
+.whatsapp{
+    position:fixed; bottom:30px; right:30px; 
+    background:#25D366; color:#fff; padding:15px 25px; 
+    border-radius:50px; text-decoration:none; font-weight:600;
+    box-shadow:0 10px 25px rgba(37, 211, 102, 0.3); z-index:1000;
+}
+
+footer{background:#fff; color:#b88a8a; padding:40px; text-align:center; border-top:1px solid #fdf2f2}
+
+@media(max-width:768px){
+    .hero h1{font-size:2.8rem}
+    .ba-image-box{width:100%}
+    nav{padding:20px;}
+    nav ul{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo-link">
+        <h2>Glow Beauty Studio</h2>
+    </a>
+    <ul>
+       <li><a href="index.html"  style="color: #e8b4b8;">Ana Sayfa</a></li>
+        <li><a href="sac.html">Saç</a></li>
+        <li><a href="kaskirpik.html">Kirpik</a></li>
+        <li><a href="ciltbakimi.html">Cilt</a></li>
+        <li><a href="lazer.html">Lazer</a></li>
+        <li><a href="kalicimakyaj.html">Kalıcı Makyaj</a></li>
+        <li><a href="tirnak.html">Tırnak</a></li>
+        <li><a href="fiyat.html">Fiyat & Kampanyalar</a></li>
+        <li><a href="ekip.html">Ekibimiz</a></li>
+        <li><a href="iletisim.html">İletişim</a></li>
+        <li><a href="memnuniyet.html">Memnuniyet</a></li>
+
+    </ul>
+</nav>
+
+<section class="hero">
+    <h1>Glow Beauty Studio</h1>
+    <p>Kendinizi şımartmanın en zarif yolu.</p>
+    <button onclick="document.querySelector('.services').scrollIntoView()">Hizmetleri Keşfet ✨</button>
+</section>
+
+<section class="services">
+    <h2>Hizmetlerimiz</h2>
+    <div class="services-wrapper">
+        <button class="nav-btn prev-btn" onclick="scrollServices(-330)">&#10094;</button>
+        
+        <div class="services-container" id="scrollArea">
+            <div class="service-card"><img src="fotograflar/sac.jpg"><h3>Saç Tasarımı</h3><p>Ombre, Sombre ve Kesim.</p><a href="sac.html" class="btn">İncele</a></div>
+            <div class="service-card"><img src="fotograflar/kirpik.jpg"><h3>Kaş & Kirpik</h3><p>Lifting ve Laminasyon.</p><a href="kaskirpik.html" class="btn">İncele</a></div>
+            <div class="service-card"><img src="fotograflar/ciltbakimi.jpg"><h3>Cilt Bakımı</h3><p>Hydrafacial ve Klasik Bakım.</p><a href="ciltbakimi.html" class="btn">İncele</a></div>
+            <div class="service-card"><img src="fotograflar/lazer.jpg"><h3>Lazer Epilasyon</h3><p>Pürüzsüz bir gelecek.</p><a href="lazer.html" class="btn">İncele</a></div>     
+            <div class="service-card"><img src="fotograflar/kalicimakyaj1.jpg"><h3>Kalıcı Güzellik</h3><p>Dudak ve Göz Pigmentasyonu.</p><a href="kalicimakyaj.html" class="btn">İncele</a></div>
+            <div class="service-card"><img src="fotograflar/tirnak.jpg"><h3>Protez Tırnak</h3><p>Nail Art ve Kalıcı Oje.</p><a href="tirnak.html" class="btn">İncele</a></div>
+        </div>
+
+        <button class="nav-btn next-btn" onclick="scrollServices(330)">&#10095;</button>
+    </div>
+</section>
+
+<section class="before-after">
+    <h2 id="baTitle">Kirpik Lifting</h2>
+    <div class="ba-container">
+        <div class="ba-image-box">
+            <img id="beforeImg" src="fotograflar/kirpik lifting (2).jpg">
+            <span class="ba-label">Öncesi</span>
+        </div>
+        <div class="ba-image-box">
+            <img id="afterImg" src="fotograflar/kirpik lifting.jpg">
+            <span class="ba-label">Sonrası</span>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+    <div class="stats-grid">
+        <div class="stat"><h3 id="stat1">0</h3><p>Mutlu Müşteri</p></div>
+        <div class="stat"><h3 id="stat2">0</h3><p>İşlem Başarısı</p></div>
+        <div class="stat"><h3 id="stat3">0</h3><p>Yıllık Deneyim</p></div>
+    </div>
+</section>
+
+<section class="testimonials">
+    <div class="testimonial-box" id="testimonial">"Hayatımda gördüğüm en kaliteli hizmet."</div>
+    <div style="color:#e8b4b8; margin-top:20px; font-size:1.5rem">★★★★★</div>
+</section>
+
+<a href="https://wa.me/905000000000" target="_blank" class="whatsapp">WhatsApp Randevu</a>
+
+<footer>© 2026 Glow Beauty Studio | Işıltını Keşfet</footer>
+
+<script>
+function scrollServices(amount) {
+    document.getElementById('scrollArea').scrollBy({ left: amount, behavior: 'smooth' });
+}
+
+const baData = [
+    {title: "Kirpik Lifting", b: "fotograflar/kirpik lifting (2).jpg", a: "fotograflar/kirpik lifting.jpg"},
+    {title: "Saç Boyama", b: "fotograflar/sac1.jpg", a: "fotograflar/sac2.jpg"},
+    {title: "Protez Tırnak", b: "fotograflar/tirnak1.jpg", a: "fotograflar/tirnak2.jpg"},
+    {title: "Cilt Bakımı", b: "fotograflar/cilt1.jpg", a: "fotograflar/cilt2.jpg"},
+    {title: "Kalıcı Makyaj", b: "fotograflar/makyajonce.jpg", a: "fotograflar/makyajsonra.jpg"}
+
+];
+let baIndex = 0;
+function updateBA() {
+    const bImg = document.getElementById('beforeImg');
+    const aImg = document.getElementById('afterImg');
+    const title = document.getElementById('baTitle');
+    
+    bImg.style.opacity = 0.3;
+    aImg.style.opacity = 0.3;
+    
+    setTimeout(() => {
+        baIndex = (baIndex + 1) % baData.length;
+        bImg.src = baData[baIndex].b;
+        aImg.src = baData[baIndex].a;
+        title.innerText = baData[baIndex].title;
+        bImg.style.opacity = 1;
+        aImg.style.opacity = 1;
+    }, 500);
+}
+setInterval(updateBA, 4000);
+
+function animateValue(id, end) {
+    let obj = document.getElementById(id);
+    let start = 0;
+    let step = end / 100;
+    let timer = setInterval(() => {
+        start += step;
+        if(start >= end) { obj.innerText = end + "+"; clearInterval(timer); }
+        else { obj.innerText = Math.floor(start) + "+"; }
+    }, 20);
+}
+
+let started = false;
+window.onscroll = () => {
+    if(window.scrollY > 1500 && !started) {
+        animateValue("stat1", 1500);
+        animateValue("stat2", 4000);
+        animateValue("stat3", 10);
+        started = true;
+    }
+};
+
+const quotes = ["Mükemmel sonuç, çok memnun kaldım.", "Güler yüzlü ekip ve hijyenik ortam.", "Tırnaklarım hiç bu kadar güzel olmamıştı.", "Cilt bakımından sonra pamuk gibi oldum."];
+let qIndex = 0;
+setInterval(() => {
+    const tBox = document.getElementById('testimonial');
+    tBox.style.opacity = 0;
+    setTimeout(() => {
+        tBox.innerText = `"${quotes[qIndex]}"`;
+        tBox.style.opacity = 1;
+        qIndex = (qIndex + 1) % quotes.length;
+    }, 500);
+}, 3000);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cilt Bakımı | Glow Beauty Studio</title>
+<link rel="icon" href="fotograflar/glowbeutyLogo2.png" type="image/gif">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+        font-family:'Poppins',sans-serif;
+        background:#fffafa;
+        color:#777;
+    }
+    
+    nav{
+        position:fixed;
+        width:100%;
+        top:0;
+        background:white;
+        padding:15px 50px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        box-shadow:0 5px 15px rgba(153, 117, 117, 0.05);
+        z-index:1000;
+    }
+    nav h2{letter-spacing:2px; color:#b88a8a; font-size: 1.2rem;}
+    nav ul{list-style:none;display:flex;gap:20px;}
+    nav a{text-decoration:none;color:#b88a8a;font-weight:500;transition:0.3s; font-size: 0.9rem;}
+    nav a:hover{color:#e8b4b8;}
+    
+
+.hero{
+    height:70vh;
+    background:linear-gradient(rgba(232, 180, 184, 0.5),rgba(255, 255, 255, 0.2)),
+    url("fotograflar/tirnakhero.jpg") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    margin-top:80px;
+}
+.hero h1{font-size:55px; animation:fadeUp 1.2s ease;}
+.hero p{margin-top:20px; font-size:20px; animation:fadeUp 1.6s ease;}
+
+
+.process-steps {
+    padding: 80px 10%;
+    display: flex;
+    justify-content: space-around;
+    background: #fffafa;
+    text-align: center;
+}
+.step { flex: 1; padding: 20px; position: relative; }
+.step h4 { color: #b88a8a; margin-top: 10px; }
+.step-number { font-size: 40px; font-weight: 800; color: #fdf2f2; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); z-index: 0; }
+.step p { position: relative; z-index: 1; font-size: 14px; }
+
+
+.services{padding:80px 10%;}
+.services h2{text-align:center; margin-bottom:50px; color:#b88a8a;}
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+.service-card{
+    background:white;
+    padding:40px 30px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.03);
+    cursor:pointer;
+    transition:0.4s;
+    text-align:center;
+    border: 1px solid #f9f9f9;
+}
+.service-card:hover{transform:translateY(-10px); border-color: #e8b4b8;}
+.service-card img{
+    width:100px; height:100px;
+    object-fit:cover;
+    border-radius:50%;
+    margin-bottom:20px;
+    border: 3px solid #fdf2f2;
+}
+.service-card h3{color:#b88a8a; margin-bottom:12px;}
+
+/* CİLT TİPİ REHBERİ */
+.skin-guide { padding: 60px 10%; background: #fff; text-align: center; }
+.guide-container { display: flex; gap: 20px; margin-top: 30px; flex-wrap: wrap; justify-content: center; }
+.guide-item { 
+    background: #fffafa; padding: 25px; border-radius: 20px; width: 250px; 
+    border: 1px dashed #e8b4b8;
+}
+.guide-item strong { color: #b88a8a; display: block; margin-bottom: 10px; }
+.guide-item p { font-size: 13px; line-height: 1.5; }
+
+/* BAKIM SONRASI İPUÇLARI */
+.aftercare-tips { padding: 80px 10%; display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+.tips-text { flex: 1; min-width: 300px; }
+.tips-text h2 { color: #b88a8a; margin-bottom: 20px; }
+.tips-list { list-style: none; }
+.tips-list li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+.tips-list li::before { content: "✦"; position: absolute; left: 0; color: #e8b4b8; }
+
+
+.faq-section { padding: 60px 10% 80px; background: #fff; }
+.faq-section h2 { text-align: center; color: #b88a8a; margin-bottom: 40px; }
+.faq-container { max-width: 800px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid #fdf2f2; padding: 20px 0; }
+.faq-question { 
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; color: #b88a8a; font-weight: 600; font-size: 1.1rem;
+}
+.faq-answer { 
+    max-height: 0; overflow: hidden; transition: 0.4s ease; 
+    color: #888; font-size: 0.95rem; line-height: 1.6;
+}
+.faq-item.active .faq-answer { max-height: 300px; margin-top: 15px; }
+.faq-question::after { content: "+"; font-size: 22px; transition: 0.3s; }
+.faq-item.active .faq-question::after { content: "−"; transform: rotate(180deg); }
+
+
+.wp-float {
+    position: fixed; bottom: 30px; right: 30px;
+    background: #25d366; color: white; width: 60px; height: 60px;
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    font-size: 30px; text-decoration: none; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    z-index: 3000; transition: 0.3s;
+}
+.wp-float:hover { transform: scale(1.1); }
+
+
+.modal-box{
+    position:fixed;
+    top:0;left:0;width:100%;height:100%;
+    background:rgba(184, 138, 138, 0.4);
+    backdrop-filter: blur(5px);
+    display:none; justify-content:center; align-items:center; z-index:2000;
+}
+.modal-content{
+    background:white; width:90%; max-width:500px; padding:50px;
+    border-radius:30px; position:relative; text-align:center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+.close-btn{ position:absolute; top:20px; right:25px; cursor:pointer; font-size:30px; color: #b88a8a; }
+
+
+.team-grid-mini { display: flex; gap: 20px; justify-content: center; margin-top: 20px; }
+.team-item-mini img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #e8b4b8; margin-bottom: 10px; }
+
+
+.team-preview{text-align:center; padding:60px 50px;}
+.team-preview h2 { color: #b88a8a; margin-bottom: 20px; }
+.team-preview button{
+    padding:15px 45px; background:#fdf2f2; color:#b88a8a;
+    border:2px solid #e8b4b8; border-radius:40px; cursor:pointer;
+    font-weight: bold; transition: 0.3s;
+}
+.team-preview button:hover { background: #e8b4b8; color: white; }
+
+
+.randevu{ padding:100px 20px; text-align:center; background:#fdf2f2; }
+.randevu a{
+    display:inline-block; padding:18px 50px; background:#e8b4b8;
+    color:white; border-radius:50px; text-decoration:none;
+    font-weight:bold; transition: 0.3s;
+}
+
+@keyframes fadeUp{ from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+</style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo-link">
+            <h2>Glow Beauty Studio</h2>
+        </a>
+        <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="sac.html">Saç</a></li>
+            <li><a href="kaskirpik.html">Kirpik</a></li>
+            <li><a href="ciltbakimi.html" style="color: #e8b4b8;">Cilt</a></li>
+            <li><a href="lazer.html">Lazer</a></li>
+            <li><a href="kalicimakyaj.html">Kalıcı Makyaj</a></li>
+            <li><a href="tirnak.html">Tırnak</a></li>
+            <li><a href="fiyat.html">Fiyat & Kampanyalar</a></li>
+            <li><a href="ekip.html">Ekibimiz</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li><a href="memnuniyet.html">Memnuniyet</a></li>
+        </ul>
+    </nav>
+
+<section class="hero">
+    <div>
+        <h1>Cilt Bakımı</h1>
+        <p>Sağlıklı, parlak ve yenilenmiş bir cilt için profesyonel dokunuşlar</p>
+    </div>
+</section>
+
+<section class="process-steps">
+    <div class="step">
+        <div class="step-number">01</div>
+        <h4>Analiz</h4>
+        <p>Cilt tipiniz uzmanlarımızca belirlenir.</p>
+    </div>
+    <div class="step">
+        <div class="step-number">02</div>
+        <h4>Bakım</h4>
+        <p>Size özel ürünlerle derinlemesine temizlik.</p>
+    </div>
+    <div class="step">
+        <div class="step-number">03</div>
+        <h4>Sonuç</h4>
+        <p>Taptaze ve ışıltılı bir cilt görünümü.</p>
+    </div>
+</section>
+
+<section class="services">
+    <h2>Hizmetlerimiz</h2>
+    <div class="service-grid">
+        <div class="service-card" onclick="openDetail('klasik')">
+            <img src="fotograflar/ciltbakimi2.jpg">
+            <h3>Klasik Bakım</h3>
+            <p>Temel temizlik ve ferahlık.</p>
+        </div>
+        <div class="service-card" onclick="openDetail('hydra')">
+            <img src="fotograflar/hydrafacial.jpg">
+            <h3>Hydrafacial</h3>
+            <p>Yeni nesil vakumlu temizlik.</p>
+        </div>
+        <div class="service-card" onclick="openDetail('anti')">
+            <img src="fotograflar/antiaging.jpg">
+            <h3>Anti-Aging</h3>
+            <p>Gençlik ve canlılık kazandırır.</p>
+        </div>
+    </div>
+</section>
+
+<section class="skin-guide">
+    <h2 style="color: #b88a8a;">Cildinizi Tanıyor musunuz?</h2>
+    <p>Bakım öncesi cilt tipinizi belirlemek başarının anahtarıdır.</p>
+    <div class="guide-container">
+        <div class="guide-item">
+            <strong>Yağlı Cilt</strong>
+            <p>Parlamaya meyilli, geniş gözenekli. Hydrafacial sizin için en iyisi!</p>
+        </div>
+        <div class="guide-item">
+            <strong>Kuru Cilt</strong>
+            <p>Gergin, nemsiz ve mat. Yoğun nem bakımı ve kolajen desteği gerekir.</p>
+        </div>
+        <div class="guide-item">
+            <strong>Karma Cilt</strong>
+            <p>T bölgesi yağlı, yanaklar kuru. Dengeli bir klasik bakım idealdir.</p>
+        </div>
+    </div>
+</section>
+
+<section class="aftercare-tips">
+    <div style="flex: 1; min-width: 300px;">
+        <img src="fotograflar/cilt5.jpg" style="width: 100%; border-radius: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+    </div>
+    <div class="tips-text">
+        <h2>Bakım Sonrası Işıltıyı Koruyun</h2>
+        <ul class="tips-list">
+            <li>İşlemden sonraki ilk 24 saat cildinize makyaj yapmayın.</li>
+            <li>Güneş koruyucu kullanmayı asla ihmal etmeyin.</li>
+            <li>Bakım sonrası bol su tüketerek nem dengesini içeriden destekleyin.</li>
+            <li>Cilt tipinize uygun önerdiğimiz ev devam ürünlerini düzenli kullanın.</li>
+        </ul>
+    </div>
+</section>
+
+<section class="faq-section">
+    <h2>Cilt Bakımı Hakkında Merak Edilenler</h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">Ne kadar sıklıkla cilt bakımı yaptırmalıyım?</div>
+            <div class="faq-answer">Cilt hücrelerinin yenilenme döngüsü ortalama 28 gündür. Bu nedenle cildin nefes alması ve tazelenmesi için ayda bir kez profesyonel bakım yaptırmanızı öneriyoruz.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Hydrafacial ile klasik bakımın farkı nedir?</div>
+            <div class="faq-answer">Klasik bakım manuel temizliğe dayanırken, Hydrafacial vakumlu bir cihaz yardımıyla gözenekleri el değmeden derinlemesine temizler ve aynı anda cilde hyaluronik asit ve vitaminleri pompalar.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">İşlemden sonra yüzümde kızarıklık olur mu?</div>
+            <div class="faq-answer">Hassas ciltlerde işlem sonrası hafif ve geçici bir pembelik oluşabilir ancak bu durum genellikle birkaç saat içinde tamamen düzelir ve sosyal hayatınıza devam edebilirsiniz.</div>
+        </div>
+    </div>
+</section>
+
+<section class="team-preview">
+    <h2>Uzman Ekibimiz</h2>
+    <button onclick="openTeam()">Kadromuzu İncele</button>
+</section>
+
+<div class="modal-box" id="detailModal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('detailModal')">&times;</span>
+        <h3 id="detailTitle"></h3>
+        <p id="detailText" style="margin-top: 15px; line-height: 1.6; color: #888;"></p>
+        <a href="iletisim.html" style="display:inline-block; margin-top:20px; color:#e8b4b8; text-decoration:none; font-weight:bold;">Randevu Al →</a>
+    </div>
+</div>
+
+<div class="modal-box" id="teamModal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('teamModal')">&times;</span>
+        <h3 style="color: #b88a8a; margin-bottom: 20px;">Cilt Bakım Uzmanlarımız</h3>
+        <div class="team-grid-mini">
+            <div class="team-item-mini">
+                <img src="fotograflar/merveuzun.jpg">
+                <h4>Merve Uzun</h4>
+                <p style="font-size: 12px;">Medikal Estetisyen</p>
+            </div>
+            <div class="team-item-mini">
+                <img src="fotograflar/denizaydin.jpg">
+                <h4>Deniz Aydın</h4>
+                <p style="font-size: 12px;">Cilt Analiz Uzmanı</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="randevu">
+    <h2>Cildiniz İçin En Doğru Zaman Şimdi ✨</h2>
+    <a href="iletisim.html">Ücretsiz Cilt Analizi İçin Yazın</a>
+</section>
+
+<a href="https://wa.me/905000000000" class="wp-float" target="_blank">💬</a>
+
+<script>
+
+function openDetail(type){
+    const modal = document.getElementById("detailModal");
+    const title = document.getElementById("detailTitle");
+    const text = document.getElementById("detailText");
+
+    if(type==="klasik"){
+        title.innerText="Klasik Cilt Bakımı";
+        text.innerText="İşlem süresi: 60 dk. Siyah nokta temizliği, buhar terapisi, peeling ve cildin ihtiyacına özel maske uygulamalarını içerir.";
+    }
+    if(type==="hydra"){
+        title.innerText="Hydrafacial";
+        text.innerText="İşlem süresi: 45 dk. El değmeden vakumlama sistemiyle gözenekleri temizler, cilde vitamin yüklemesi yapar.";
+    }
+    if(type==="anti"){
+        title.innerText="Anti-Aging Bakım";
+        text.innerText="İşlem süresi: 75 dk. Yaş alma belirtilerini hafifletmek ve kolajen üretimini tetiklemek için yapılan cihaz destekli bakımdır.";
+    }
+    modal.style.display="flex";
+}
+
+
+function openTeam() {
+    document.getElementById("teamModal").style.display = "flex";
+}
+
+
+function closeModal(modalId){
+    document.getElementById(modalId).style.display="none";
+}
+
+
+document.querySelectorAll('.faq-question').forEach(item => {
+    item.addEventListener('click', () => {
+        const parent = item.parentElement;
+        parent.classList.toggle('active');
+    });
+});
+
+window.onclick = function(e){
+    if(e.target.className === "modal-box"){
+        e.target.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalıcı Makyaj | Glow Beauty Studio</title>
+<link rel="icon" href="fotograflar/glowbeutyLogo2.png" type="image/gif">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+        font-family:'Poppins',sans-serif;
+        background:#fffafa;
+        color:#777;
+    }
+    
+    nav{
+        position:fixed;
+        width:100%;
+        top:0;
+        background:white;
+        padding:15px 50px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        box-shadow:0 5px 15px rgba(153, 117, 117, 0.05);
+        z-index:1000;
+    }
+    nav h2{letter-spacing:2px; color:#b88a8a; font-size: 1.2rem;}
+    nav ul{list-style:none;display:flex;gap:20px;}
+    nav a{text-decoration:none;color:#b88a8a;font-weight:500;transition:0.3s; font-size: 0.9rem;}
+    nav a:hover{color:#e8b4b8;}
+
+.hero{
+    height:70vh;
+    background:linear-gradient(rgba(232, 180, 184, 0.5),rgba(255, 255, 255, 0.2)),
+    url("fotograflar/tirnakhero.jpg") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    margin-top:80px;
+}
+.hero h1{font-size:55px; animation:fadeUp 1.2s ease;}
+
+.services{ padding:80px 10%; }
+.service-row{
+    display:flex;
+    align-items:center;
+    gap:60px;
+    margin-bottom:100px;
+}
+.service-row:nth-child(even){ flex-direction:row-reverse; }
+
+.service-row img{
+    width:350px;
+    height:350px;
+    object-fit:cover;
+    border-radius:30px;
+    box-shadow: 0 15px 35px rgba(184, 138, 138, 0.15);
+}
+
+.service-content h3{ color:#b88a8a; font-size:28px; margin-bottom:15px; }
+.service-content p{ font-size:16px; line-height:1.7; margin-bottom:20px; }
+
+.info-tag {
+    background: #fdf2f2;
+    padding: 15px 20px;
+    border-radius: 15px;
+    border-left: 4px solid #e8b4b8;
+}
+.info-tag b { color: #b88a8a; display: block; font-size: 14px; margin-bottom: 5px; }
+
+.process-timeline {
+    padding: 80px 10%;
+    background: white;
+    text-align: center;
+}
+.process-timeline h2 { color: #b88a8a; margin-bottom: 50px; }
+.timeline-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.timeline-step {
+    flex: 1;
+    min-width: 200px;
+    padding: 20px;
+}
+.step-icon {
+    width: 60px; height: 60px;
+    background: #fdf2f2;
+    color: #e8b4b8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 60px 10%;
+}
+.feature-box {
+    background: #fffafa;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px dashed #e8b4b8;
+    text-align: center;
+}
+.feature-box h4 { color: #b88a8a; margin-bottom: 10px; }
+
+.faq-section { padding: 80px 10%; background: #fff; }
+.faq-section h2 { text-align: center; color: #b88a8a; margin-bottom: 40px; }
+.faq-container { max-width: 800px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid #fdf2f2; padding: 20px 0; }
+.faq-question { 
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; color: #b88a8a; font-weight: 600; font-size: 1.1rem;
+}
+.faq-answer { 
+    max-height: 0; overflow: hidden; transition: 0.4s ease; 
+    color: #888; font-size: 0.95rem; line-height: 1.6;
+}
+.faq-item.active .faq-answer { max-height: 300px; margin-top: 15px; }
+.faq-question::after { content: "+"; font-size: 22px; transition: 0.3s; }
+.faq-item.active .faq-question::after { content: "−"; transform: rotate(180deg); }
+
+.wp-float {
+    position: fixed; bottom: 30px; right: 30px;
+    background: #25d366; color: white; width: 60px; height: 60px;
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    font-size: 30px; text-decoration: none; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    z-index: 3000; transition: 0.3s;
+}
+.wp-float:hover { transform: scale(1.1); }
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(184, 138, 138, 0.4);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 35px;
+    width: 90%;
+    max-width: 550px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+.close-modal {
+    position: absolute;
+    top: 20px; right: 25px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #b88a8a;
+}
+.team-grid-modal {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 25px;
+}
+.team-item {
+    text-align: center;
+}
+.team-item img {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fdf2f2;
+}
+
+.cta{ padding:100px 20px; text-align:center; background:#fdf2f2; }
+.cta a{
+    display:inline-block; padding:18px 50px; background:#e8b4b8; color:#fff;
+    text-decoration:none; border-radius:50px; font-weight: bold; transition:0.3s;
+}
+
+@keyframes fadeUp{ from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+</style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo-link">
+            <h2>Glow Beauty Studio</h2>
+        </a>
+        <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="sac.html">Saç</a></li>
+            <li><a href="kaskirpik.html">Kirpik</a></li>
+            <li><a href="ciltbakimi.html">Cilt</a></li>
+            <li><a href="lazer.html">Lazer</a></li>
+            <li><a href="kalicimakyaj.html" style="color: #e8b4b8;">Kalıcı Makyaj</a></li>
+            <li><a href="tirnak.html">Tırnak</a></li>
+            <li><a href="fiyat.html">Fiyat & Kampanyalar</a></li>
+            <li><a href="ekip.html">Ekibimiz</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li><a href="memnuniyet.html">Memnuniyet</a></li>
+        </ul>
+    </nav>
+
+<section class="hero">
+    <h1>Kalıcı Güzellik Sanatı</h1>
+</section>
+
+<section class="services">
+    <div class="service-row">
+        <img src="fotograflar/lipblush.jpg">
+        <div class="service-content">
+            <h3>Dudak Renklendirme (Lip Blush)</h3>
+            <p>Dudaklarınızın doğal rengini canlandırıyor ve asimetriyi düzeltiyoruz. Her sabah taze ve doğal bir görünümle uyanın.</p>
+            <div class="info-tag">
+                <b>Neden Tercih Edilmeli?</b>
+                <p>Silik dudak hattını belirginleştirir ve solgun görünümü ortadan kaldırır.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="service-row">
+        <img src="fotograflar/dipliner.jpg">
+        <div class="service-content">
+            <h3>Dipliner & Babyliner</h3>
+            <p>Kirpik diplerine uygulanan ince dokunuşlarla bakışlarınızı daha net ve buğulu hale getiriyoruz.</p>
+            <div class="info-tag">
+                <b>Neden Tercih Edilmeli?</b>
+                <p>Kirpikleri daha yoğun gösterir ve göz yapısını yukarı kaldırır.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="service-row">
+        <img src="fotograflar/pigment.jpg">
+        <div class="service-content">
+            <h3>Medikal Pigmentasyon</h3>
+            <p>Cilt lekelerini veya yara izlerini profesyonel pigmentasyon teknikleriyle kamufle ederek özgüveninizi tazeliyoruz.</p>
+            <div class="info-tag">
+                <b>Uygulama Alanı</b>
+                <p>Yara izleri, vitiligo kamuflajı ve saçlı deri simülasyonu.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="process-timeline">
+    <h2>Uygulama Süreci Nasıl İşler?</h2>
+    <div class="timeline-container">
+        <div class="timeline-step">
+            <div class="step-icon">1</div>
+            <h4>Altın Oran Çizimi</h4>
+            <p>Yüz hatlarınıza en uygun form belirlenir.</p>
+        </div>
+        <div class="timeline-step">
+            <div class="step-icon">2</div>
+            <h4>Renk Seçimi</h4>
+            <p>Cilt alt tonunuza uygun pigmentler seçilir.</p>
+        </div>
+        <div class="timeline-step">
+            <div class="step-icon">3</div>
+            <h4>Uygulama</h4>
+            <p>Steril koşullarda profesyonel uygulama yapılır.</p>
+        </div>
+        <div class="timeline-step">
+            <div class="step-icon">4</div>
+            <h4>Kontrol</h4>
+            <p>1 ay sonra rötuş ile sonuç mükemmelleştirilir.</p>
+        </div>
+    </div>
+</section>
+
+<section class="feature-grid">
+    <div class="feature-box">
+        <h4>Kalıcılık Süresi</h4>
+        <p>Cilt tipine göre 1.5 - 3 yıl arası kalıcılık sağlar.</p>
+    </div>
+    <div class="feature-box">
+        <h4>Acı Hissi</h4>
+        <p>Anestezik kremler sayesinde minimum konfor kaybı.</p>
+    </div>
+    <div class="feature-box">
+        <h4>Pigment Kalitesi</h4>
+        <p>Alerji yapmayan, ağır metal içermeyen organik boyalar.</p>
+    </div>
+</section>
+
+<section class="faq-section">
+    <h2>Kalıcı Makyaj Hakkında Merak Edilenler</h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">İşlem sonrası renk çok koyu olur mu?</div>
+            <div class="faq-answer">Uygulama yapıldığı gün renk %30-40 daha canlı görünür. 1 hafta içerisinde iyileşme tamamlandığında renk doğal ve yumuşak formuna kavuşacaktır.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Kalıcı makyaj zamanla renk değiştirir mi?</div>
+            <div class="faq-answer">Kullandığımız organik pigmentler sayesinde zamanla kızarma veya grileşme yapmaz, sadece tonu yavaş yavaş açılarak ciltten kaybolur.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">İyileşme süreci ne kadardır?</div>
+            <div class="faq-answer">Yüzeysel iyileşme 3-7 gün sürer. Bu süreçte uzmanlarımızın önerdiği bakım kremlerini kullanmak ve kabukları soymamak çok önemlidir.</div>
+        </div>
+    </div>
+</section>
+
+<section style="text-align: center; padding-bottom: 80px;">
+    <button onclick="openTeam()" style="padding:15px 45px; background:#fdf2f2; color:#b88a8a; border:2px solid #e8b4b8; border-radius:40px; cursor:pointer; font-weight:bold; transition: 0.3s;">Uzman Kadromuzu İncele</button>
+</section>
+
+<div class="modal-overlay" id="teamModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeTeam()">&times;</span>
+        <h3 style="color: #b88a8a; margin-bottom: 10px;">Kalıcı Makyaj Sanatçılarımız</h3>
+        <p style="font-size: 14px; margin-bottom: 20px;">Güzelliğinizi uzman ellere emanet edin.</p>
+        <div class="team-grid-modal">
+            <div class="team-item">
+                <img src="fotograflar/deniz.jpg">
+                <h4 style="color: #b88a8a; margin-top:10px;">Deniz Akkaya</h4>
+                <p style="font-size: 12px;">Grand Master Artist</p>
+            </div>
+            <div class="team-item">
+                <img src="fotograflar/zeynep.jpg">
+                <h4 style="color: #b88a8a; margin-top:10px;">Zeynep Sönmez</h4>
+                <p style="font-size: 12px;">Pigmentasyon Uzmanı</p>
+            </div>
+        </div>
+        <a href="iletisim.html" style="display:inline-block; margin-top:30px; color:#e8b4b8; text-decoration:none; font-weight:bold; font-size:14px;">Ücretsiz Ön Çizim Randevusu Al →</a>
+    </div>
+</div>
+
+<section class="cta">
+    <h2>Yüzünüzdeki Değişimi Başlatın ✨</h2>
+    <a href="iletisim.html">Ön Görüşme İçin Randevu Al</a>
+</section>
+
+<a href="https://wa.me/905000000000" class="wp-float" target="_blank">💬</a>
+
+<script>
+function openTeam() {
+    document.getElementById("teamModal").style.display = "flex";
+}
+
+function closeTeam() {
+    document.getElementById("teamModal").style.display = "none";
+}
+
+document.querySelectorAll('.faq-question').forEach(item => {
+    item.addEventListener('click', () => {
+        const parent = item.parentElement;
+        parent.classList.toggle('active');
+    });
+});
+
+window.onclick = function(event) {
+    const modal = document.getElementById("teamModal");
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
